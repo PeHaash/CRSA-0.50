@@ -6,6 +6,7 @@
 
 Env_Putter::Env_Putter() {
 	// should make the Shared!!
+	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &Grid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
 
 }
 
