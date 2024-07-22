@@ -9,7 +9,7 @@
 
 #define __CUST_ENV__ env_01
 
-#include "Defines.h"
+#include "Macros.h"
 #if !defined(MAX_X) || !defined(MAX_Y) || !defined(ROOM_COUNT)
 #error "you should define some constants in compile time"
 #endif
