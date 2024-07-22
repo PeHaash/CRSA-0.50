@@ -4,7 +4,13 @@
 
 #include <cstdint>
 
-#include "ENV_Painter.h"
+#ifdef _MSC_VER
+	#include "./../Env_002/Env_Putter.h"
+#endif
+
+#ifdef CUST_ENV_IS_PUTTER
+	#include "Env_Putter.h"
+#endif
 
 
 

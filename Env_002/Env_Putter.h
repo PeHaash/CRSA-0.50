@@ -6,6 +6,9 @@
 #include "Objectives.h"
 #include "DisjointSet.h"
 
+
+constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
+
 struct Subspace {
 	int x1, y1, x2, y2;
 	bool SharesAWallWith(Subspace b)const {
