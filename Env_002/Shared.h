@@ -7,6 +7,9 @@ struct Shared {
 	// Action:
 	int x1, x2, y1, y2, type;
 	// Observations:
+	int* Grids;
+	int* RoomAreaCount;
+	int* UsedSpaceCount;
 
 	// Score, Terminations:
 	double Score;
