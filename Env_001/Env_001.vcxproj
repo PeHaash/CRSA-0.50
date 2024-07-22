@@ -19,19 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Defines.h" />
+    <ClInclude Include="Macros.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="ENV_Painter.h" />
     <ClInclude Include="Objectives.h" />
     <ClInclude Include="SharedLib.h" />
-    <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="ENV_Painter.cpp" />
     <ClCompile Include="Objectives.cpp" />
     <ClCompile Include="SharedLib.cpp" />
-    <ClCompile Include="Wrapper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

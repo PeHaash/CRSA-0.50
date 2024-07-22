@@ -12,6 +12,9 @@
 	#include "Env_Putter.h"
 #endif
 
+#ifdef CUST_ENV_IS_PANTER
+#include "Env_Putter.h"
+#endif
 
 
 extern "C" {

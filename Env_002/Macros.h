@@ -1,7 +1,7 @@
 #pragma once
-
+// Macros for ENV_002 : Putter
 #define __CUST_ENV__ Env_Putter
-//#include "Defines.h"
+
 #ifdef _MSC_VER
 	#define ROOM_COUNT 3
 	#define MAX_SS_PER_ROOM 4
