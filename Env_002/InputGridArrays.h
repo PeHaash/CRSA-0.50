@@ -1,4 +1,3 @@
-#pragma once
 
 static_assert(MAX_X == 10,"MAX_X inconsistency");
 static_assert(MAX_Y == 20,"MAX_Y inconsistency");
