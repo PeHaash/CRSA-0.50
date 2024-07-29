@@ -1,3 +1,5 @@
+#pragma once
+
 static_assert(MAX_X == 10,"MAX_X inconsistency");
 static_assert(MAX_Y == 20,"MAX_Y inconsistency");
 static_assert(RESET_GRIDS_COUNT == 5,"RESET_GRIDS_COUNT inconsistency");
