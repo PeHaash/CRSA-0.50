@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="Env_Putter.h" />
+    <ClInclude Include="InputGridArrays.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Objectives.h" />
     <ClInclude Include="Shared.h" />
