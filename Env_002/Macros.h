@@ -12,7 +12,7 @@
 	#define PENALIZED_CONSTANT -5
 	#define ALPHA 1
 	#define BETA 0.2
-	#define MAX_STEPS 30 // TODO: Make max-steps + termination better
-	#define RESET_GRIDS_COUNT 5 /// DONT FORGET TO ADD GRID_ID TO THE WHOLE SHARED STUFF
+	#define MAX_STEPS 10 // TODO: Make max-steps + termination better
+	#define RESET_GRIDS_COUNT 30 /// DONT FORGET TO ADD GRID_ID TO THE WHOLE SHARED STUFF
 #endif
 
