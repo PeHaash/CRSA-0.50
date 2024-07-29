@@ -17,13 +17,27 @@ int32_t Env_Putter::Reset() {
 		NumberOfSubspacesMade[i] = 0;
 	}
 	AllAvailableSpace = 0;
-	for (int i = 0; i < MAX_X + 1; i++) {
-		for (int j = 0; j < MAX_Y + 1; j++) {
-			Grid[i][j] = (InputGrid[i][j] == 0) ? -1 : -2;
-			FurnitureGrid[i][j] = -1;
-			AllAvailableSpace += (InputGrid[i][j] == 0);
+	if(shared_data.Grid_id == -1){
+		// customized input from the notebook
+		for (int i = 0; i < MAX_X + 1; i++) {
+			for (int j = 0; j < MAX_Y + 1; j++) {
+				Grid[i][j] = (InputGrid[i][j] == 0) ? -1 : -2;
+				FurnitureGrid[i][j] = -1;
+				AllAvailableSpace += (InputGrid[i][j] == 0);
+			}
 		}
 	}
+	else {
+		// fixed input from the code we have:
+		for (int i = 0; i < MAX_X + 1; i++) {
+			for (int j = 0; j < MAX_Y + 1; j++) {
+				Grid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == 0) ? -1 : -2;
+				FurnitureGrid[i][j] = -1;
+				AllAvailableSpace += (InputGrid[i][j] == 0);
+			}
+		}
+	}
+	
 	for (int i = 0; i < MAX_SUBSPACE; i++) {
 		Subspaces[i] = { -1 };
 	}
