@@ -7,11 +7,12 @@
 	#define MAX_SS_PER_ROOM 4
 	#define FURNITURE_COUNT 4
 	#define MAX_X 10
-	#define MAX_Y 5
+	#define MAX_Y 20
 	#define GOAL_AREAS { 0.3,0.4,0.3 }
 	#define PENALIZED_CONSTANT -5
 	#define ALPHA 1
 	#define BETA 0.2
 	#define MAX_STEPS 10 // TODO: Make max-steps + termination better
+	#define RESET_GRIDS_COUNT 5
 #endif
 

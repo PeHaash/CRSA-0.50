@@ -5,7 +5,7 @@
 #include "Shared.h"
 #include "Objectives.h"
 #include "DisjointSet.h"
-
+#include "InputGridArrays.h"
 
 constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 
