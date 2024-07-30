@@ -28,8 +28,10 @@ private:
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
 	int InputGrid[MAX_X + 1][MAX_Y + 1] = { 0 };
-	int Grid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
+	int SubspaceGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
 	int FurnitureGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
+	int RoomGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty
+	int WallGrid[MAX_X + 1][MAX_Y + 1]; // 0: no wall, 1: wall, 2: window
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
 	// keep subspaces positions

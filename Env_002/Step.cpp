@@ -68,7 +68,7 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 		Penalized = true;
 		return;
 	}
-	// check if the ss in covering other things
+	// check if the ss is covering other things
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
 			if (Grid[i][j] != -1) {
