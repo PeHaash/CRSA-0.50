@@ -56,8 +56,11 @@ private:
 	void AddDoor(int x1, int y1, int x2, int y2);
 	void AddWindow(int x1, int y1, int x2, int y2);
 	void AddEntrance(int x1, int y1, int x2, int y2);
-	void AddSubspace(int x1, int y1, int x2, int y2, int type);
+	void AddSubspace(int x1, int y1, int x2, int y2, int subspace_id);
 	void AddFurniture(int x1, int y1, int x2, int y2, int type);
+private:
+	// helper functions for step
+	void UpdateWallsOfSubspace(int subspace_id);
 
 public:
 	Env_Putter();

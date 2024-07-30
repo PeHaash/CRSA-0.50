@@ -6,7 +6,7 @@
 
 Env_Putter::Env_Putter() {
 	// should make the Shared!!
-	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &Grid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
+	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
 
 }
 
@@ -21,7 +21,7 @@ int32_t Env_Putter::Reset() {
 		// customized input from the notebook
 		for (int i = 0; i < MAX_X + 1; i++) {
 			for (int j = 0; j < MAX_Y + 1; j++) {
-				Grid[i][j] = (InputGrid[i][j] == 0) ? -1 : -2;
+				SubspaceGrid[i][j] = (InputGrid[i][j] == 0) ? -1 : -2;
 				FurnitureGrid[i][j] = -1;
 				AllAvailableSpace += (InputGrid[i][j] == 0);
 			}
@@ -31,7 +31,9 @@ int32_t Env_Putter::Reset() {
 		// fixed input from the code we have:
 		for (int i = 0; i < MAX_X + 1; i++) {
 			for (int j = 0; j < MAX_Y + 1; j++) {
-				Grid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == 0) ? -1 : -2;
+				SubspaceGrid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == 0) ? -1 : -2;
+				WallGrid[i][j] = 0;
+				RoomGrid[i][j] = -1;
 				FurnitureGrid[i][j] = -1;
 				AllAvailableSpace += (InputGrid[i][j] == 0);
 			}
@@ -56,11 +58,11 @@ int32_t Env_Putter::Render()
 	std::cout << '\n';
 	for (int j = 1; j <= MAX_Y; j++) {
 		for (int i = 1; i <= MAX_X; i++) {
-			if (Grid[i][j] == -1) {
+			if (SubspaceGrid[i][j] == -1) {
 				std::cout << std::setw(2) << "-";
 			}
 			else {
-				std::cout << std::setw(2) << Grid[i][j];
+				std::cout << std::setw(2) << SubspaceGrid[i][j];
 			}
 			//std::cout <<(Grid[i][j]==-1? "-": (const char*)(Grid[i][j])) << "";
 		}
