@@ -139,6 +139,7 @@
     <ClCompile Include="Env_Putter.cpp" />
     <ClCompile Include="Evaluators.cpp" />
     <ClCompile Include="Objectives.cpp" />
+    <ClCompile Include="Reset.cpp" />
     <ClCompile Include="Step.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -92,7 +92,6 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 			RoomGrid[i][j] = room_id;
 		}
 
-
 	UsedSpaceCount += Area;
 	RoomAreaCount[room_id] += Area;
 	NumberOfSubspacesMade[room_id]++;
@@ -111,9 +110,34 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 
 }
 
-void Env_Putter::AddFurniture(int x1, int y1, int x2, int y2, int type)
+void Env_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture_id)
 {
 	// TODO: AddFurniture
+	// check if we put this before
+	if (Furnitures[furniture_id].x1 != -1) {
+		// we have put it before
+		Penalized = true;
+		return;
+	}
+
+	// check if the furniture is out of rooms, is on the wall, or other furnitures
+	for (int i = x1; i <= x2; i++) {
+		for (int j = y1; j <= y2; j++) {
+			if (RoomGrid[i][j] == -1 || WallGrid[i][j] != 0 || FurnitureGrid[i][j] != -1) {
+				Penalized = true;
+				return;
+			}
+		}
+	}
+
+	// no problem, let's put it
+	Furnitures[furniture_id] = { x1,y1,x2,y2 };
+	for (int i = x1; i <= x2; i++)
+		for (int j = y1; j <= y2; j++)
+		{
+			FurnitureGrid[i][j] = furniture_id;
+		}
+
 }
 
 

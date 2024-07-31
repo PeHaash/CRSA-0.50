@@ -36,6 +36,7 @@ private:
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
 	// keep subspaces positions
 	Subspace Subspaces[MAX_SUBSPACE] = { -1 };
+	Subspace Furnitures[FURNITURE_COUNT] = { -1 };
 	DisjointSet SubspaceConnections[ROOM_COUNT];// = {MAX_SS_PER_ROOM}; 
 	// keep door positions
 	// keep windows positions
@@ -57,7 +58,7 @@ private:
 	void AddWindow(int x1, int y1, int x2, int y2);
 	void AddEntrance(int x1, int y1, int x2, int y2);
 	void AddSubspace(int x1, int y1, int x2, int y2, int subspace_id);
-	void AddFurniture(int x1, int y1, int x2, int y2, int type);
+	void AddFurniture(int x1, int y1, int x2, int y2, int furniture_id);
 private:
 	// helper functions for step
 	void UpdateWallsOfSubspace(int subspace_id);
