@@ -15,9 +15,8 @@ int32_t Env_Putter::Reset() {
 		// customized input from the notebook
 		for (int i = 0; i < MAX_X + 1; i++) {
 			for (int j = 0; j < MAX_Y + 1; j++) {
-				SubspaceGrid[i][j] = (InputGrid[i][j] == 0) ? -1 : -2;
-
-				AllAvailableSpace += (InputGrid[i][j] == 0);
+				SubspaceGrid[i][j] = (InputGrid[i][j] == FREE) ? EMPTY : UNAVAILABLE;
+				AllAvailableSpace += (InputGrid[i][j] == FREE);
 			}
 		}
 	}
@@ -25,9 +24,8 @@ int32_t Env_Putter::Reset() {
 		// fixed input from the code we have:
 		for (int i = 0; i < MAX_X + 1; i++) {
 			for (int j = 0; j < MAX_Y + 1; j++) {
-				SubspaceGrid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == 0) ? -1 : -2;
-
-				AllAvailableSpace += (InputGrid[i][j] == 0);
+				SubspaceGrid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == FREE) ? EMPTY : UNAVAILABLE;
+				AllAvailableSpace += (PresetInputArrays[shared_data.Grid_id][i][j] == FREE);
 			}
 		}
 	}
@@ -35,21 +33,24 @@ int32_t Env_Putter::Reset() {
 	// For grids:
 	for (int i = 0; i < MAX_X + 1; i++) {
 		for (int j = 0; j < MAX_Y + 1; j++) {
-			FurnitureGrid[i][j] = -1;
-			WallGrid[i][j] = 0;
-			RoomGrid[i][j] = -1;
-			CirculationGrid[i][j] = 0;
+			FurnitureGrid[i][j] = EMPTY;
+			WallGrid[i][j] = NO_WALL;
+			RoomGrid[i][j] = EMPTY;
+			CirculationGrid[i][j] = NO_CIRCULATION;
 		}
 	}
 
+	// for subspaces:
+	for (int i = 0; i < MAX_SUBSPACE; i++) {
+		Subspaces[i] = { -1 };
+	}
 
+	// for furniture
 	for (int i = 0; i < FURNITURE_COUNT; i++) {
 		Furnitures[i] = { -1 };
 	}
 
-	for (int i = 0; i < MAX_SUBSPACE; i++) {
-		Subspaces[i] = { -1 };
-	}
+
 	RoomsConnections = DisjointSet(ROOM_COUNT);
 
 	UsedSpaceCount = 0;

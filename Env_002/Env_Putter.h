@@ -19,6 +19,8 @@ constexpr int ACCESS = 1;
 constexpr int OUTSIDE = 2;
 // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
 
+constexpr int NO_CIRCULATION = 0, IS_CIRCULATION = 1;
+
 constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 
 

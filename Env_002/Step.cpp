@@ -52,12 +52,23 @@ void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 	// Good spaces: inside Rooms or Acsess, not part of furnitures 
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
-			if (RoomGrid[i][j] != -1 || InputGrid[i][j] == ) {
+			if (InputGrid[i][j] == ACCESS || (RoomGrid[i][j] != EMPTY && FurnitureGrid[i][j] == EMPTY)) {
+				// fine, circulation in access or emptry parts of rooms
+			}
+			else {
 				Penalized = true;
 				return;
 			}
 		}
 	}
+
+	for (int i = x1; i <= x2; i++) {
+		for (int j = y1; j <= y2; j++) {
+			CirculationGrid[i][j] = IS_CIRCULATION;
+		}
+	}
+
+
 }
 
 void Env_Putter::AddWindow(int x1, int y1, int x2, int y2)
@@ -82,7 +93,7 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 	// check if the ss is covering other things
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
-			if (SubspaceGrid[i][j] != -1) {
+			if (SubspaceGrid[i][j] != EMPTY) {
 				Penalized = true;
 				return;
 			}
@@ -133,7 +144,7 @@ void Env_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture_id)
 	// check if the furniture is out of rooms, is on the wall, or other furnitures
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
-			if (RoomGrid[i][j] == -1 || WallGrid[i][j] != 0 || FurnitureGrid[i][j] != -1) {
+			if (RoomGrid[i][j] == EMPTY || WallGrid[i][j] != NO_WALL || FurnitureGrid[i][j] != EMPTY) {
 				Penalized = true;
 				return;
 			}
@@ -161,24 +172,22 @@ void Env_Putter::UpdateWallsOfSubspace(int subspace_id) {
 	for (int x = ss.x1 + 1; x <= ss.x2 - 1; x++) {
 		bool top_has_different_room_neighbour =
 			(RoomGrid[x - 1][ss.y1 - 1] != room_id ||  RoomGrid[x][ss.y1 - 1] != room_id || RoomGrid[x + 1][ss.y1 - 1] != room_id);
-		RoomGrid[x][ss.y1] = top_has_different_room_neighbour ? 1 : 0;
+		WallGrid[x][ss.y1] = top_has_different_room_neighbour ? IS_WALL: NO_WALL;
 
 		bool bottom_has_different_room_neighbour =
 			(RoomGrid[x - 1][ss.y2 + 1] != room_id || RoomGrid[x][ss.y2 + 1] != room_id || RoomGrid[x + 1][ss.y2 + 1] != room_id);
-		RoomGrid[x][ss.y2] = bottom_has_different_room_neighbour ? 1 : 0;
+		WallGrid[x][ss.y2] = bottom_has_different_room_neighbour ? IS_WALL : NO_WALL;
 	}
 
 	// Add walls for the left and right
 	for (int y = ss.y1 + 1; y <= ss.y2 - 1; y++) {
 		bool left_has_different_room_neighbour =
 			(RoomGrid[ss.x1 - 1][y - 1] != room_id || RoomGrid[ss.x1 - 1][y] != room_id || RoomGrid[ss.x1 - 1][y + 1] != room_id);
-
-		WallGrid[ss.x1][y] = left_has_different_room_neighbour ? 1 : 0;
+		WallGrid[ss.x1][y] = left_has_different_room_neighbour ? IS_WALL : NO_WALL;
 
 		bool right_has_different_room_neighbour =
 			(RoomGrid[ss.x2 + 1][y - 1] != room_id || RoomGrid[ss.x2 + 1][y] != room_id || RoomGrid[ss.x2 + 1][y + 1] != room_id);
-
-		WallGrid[ss.x2][y] = right_has_different_room_neighbour ? 1 : 0;
+		WallGrid[ss.x2][y] = right_has_different_room_neighbour ? IS_WALL : NO_WALL;
 	}
 
 
@@ -186,20 +195,20 @@ void Env_Putter::UpdateWallsOfSubspace(int subspace_id) {
 	bool top_left_corner_has_different_room_neighbour =
 		(RoomGrid[ss.x1 - 1][ss.y1 - 1] != room_id || RoomGrid[ss.x1 - 1][ss.y1] != room_id || RoomGrid[ss.x1 - 1][ss.y1 + 1] != room_id ||
 			RoomGrid[ss.x1][ss.y1 - 1] != room_id || RoomGrid[ss.x1 + 1][ss.y1 - 1] != room_id);
-	RoomGrid[ss.x1][ss.y1] = top_left_corner_has_different_room_neighbour ? 1 : 0;
+	WallGrid[ss.x1][ss.y1] = top_left_corner_has_different_room_neighbour ? IS_WALL : NO_WALL;
 
 	bool top_right_corner_has_different_room_neighbour =
 		(RoomGrid[ss.x2 + 1][ss.y1 - 1] != room_id || RoomGrid[ss.x2 + 1][ss.y1] != room_id || RoomGrid[ss.x2 + 1][ss.y1 + 1] != room_id ||
 			RoomGrid[ss.x2][ss.y1 - 1] != room_id || RoomGrid[ss.x2 - 1][ss.y1 - 1] != room_id);
-	RoomGrid[ss.x2][ss.y1] = top_right_corner_has_different_room_neighbour ? 1 : 0;
+	WallGrid[ss.x2][ss.y1] = top_right_corner_has_different_room_neighbour ? IS_WALL : NO_WALL;
 
 	bool bottom_left_corner_has_different_room_neighbour =
 		(RoomGrid[ss.x1 - 1][ss.y2 - 1] != room_id || RoomGrid[ss.x1 - 1][ss.y2] != room_id || RoomGrid[ss.x1 - 1][ss.y2 + 1] != room_id ||
 			RoomGrid[ss.x1][ss.y2 + 1] != room_id || RoomGrid[ss.x1 + 1][ss.y2 + 1] != room_id);
-	RoomGrid[ss.x1][ss.y2] = bottom_left_corner_has_different_room_neighbour ? 1 : 0;
+	WallGrid[ss.x1][ss.y2] = bottom_left_corner_has_different_room_neighbour ? IS_WALL : NO_WALL;
 
 	bool bottom_right_corner_has_different_room_neighbour =
 		(RoomGrid[ss.x2 + 1][ss.y2 - 1] != room_id || RoomGrid[ss.x2 + 1][ss.y2] != room_id || RoomGrid[ss.x2 + 1][ss.y2 + 1] != room_id ||
 			RoomGrid[ss.x2][ss.y2 + 1] != room_id || RoomGrid[ss.x2 - 1][ss.y2 + 1] != room_id);
-	RoomGrid[ss.x2][ss.y2] = bottom_right_corner_has_different_room_neighbour ? 1 : 0;
+	WallGrid[ss.x2][ss.y2] = bottom_right_corner_has_different_room_neighbour ? IS_WALL : NO_WALL;
 }
