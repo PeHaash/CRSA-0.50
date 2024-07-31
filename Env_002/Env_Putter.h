@@ -6,8 +6,21 @@
 #include "Objectives.h"
 #include "DisjointSet.h"
 
+constexpr int UNAVAILABLE = -2;
+constexpr int EMPTY = -1;
+constexpr int NO_WALL = 0;
+constexpr int IS_WALL = 1;
+constexpr int IS_WINDOW = 2;
+
+// grids
+constexpr int FREE = 0;
+constexpr int BLOCKED = -1;
+constexpr int ACCESS = 1;
+constexpr int OUTSIDE = 2;
+// 0: Free, -1: Blocked, 1: Acsess, 2: Outside
 
 constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
+
 
 struct Subspace {
 	int x1, y1, x2, y2;
@@ -20,6 +33,8 @@ struct Subspace {
 	}
 };
 
+struct Furniture {};
+
 class Env_Putter {
 public:
 	Shared shared_data; // data shared between the front & back
@@ -27,11 +42,12 @@ private:
 
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
-	int InputGrid[MAX_X + 1][MAX_Y + 1] = { 0 };
+	int InputGrid[MAX_X + 1][MAX_Y + 1] = { 0 }; // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
 	int SubspaceGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
 	int FurnitureGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
 	int RoomGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty
 	int WallGrid[MAX_X + 1][MAX_Y + 1]; // 0: no wall, 1: wall, 2: window
+	int CirculationGrid[MAX_X + 1][MAX_Y + 1]; // 0: no circulation, 1: circulation
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
 	// keep subspaces positions
@@ -54,7 +70,7 @@ private:
 	bool CheckRoomsInternalConnectedness();
 private:
 	// step subprocesses
-	void AddDoor(int x1, int y1, int x2, int y2);
+	void AddCirculation(int x1, int y1, int x2, int y2);
 	void AddWindow(int x1, int y1, int x2, int y2);
 	void AddEntrance(int x1, int y1, int x2, int y2);
 	void AddSubspace(int x1, int y1, int x2, int y2, int subspace_id);

@@ -11,7 +11,7 @@ int32_t Env_Putter::Step() {
 	Penalized = false;
 
 	if (type == 0 || type == 1) {
-		AddDoor(x1, y1, x2, y2);
+		AddCirculation(x1, y1, x2, y2);
 	}
 	else if (type == 2) {
 		AddWindow(x1, y1, x2, y2);
@@ -37,7 +37,7 @@ int32_t Env_Putter::Step() {
 	}
 
 	StepCount++;
-	shared_data.Terminated = (StepCount >= MAX_STEPS); // Sol
+	shared_data.Terminated = (StepCount >= MAX_STEPS);
 	shared_data.Truncated = false;
 	return 0;
 }
@@ -45,9 +45,19 @@ int32_t Env_Putter::Step() {
 
 
 
-void Env_Putter::AddDoor(int x1, int y1, int x2, int y2)
+void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 {
 	// TODO: Add Door
+	
+	// Good spaces: inside Rooms or Acsess, not part of furnitures 
+	for (int i = x1; i <= x2; i++) {
+		for (int j = y1; j <= y2; j++) {
+			if (RoomGrid[i][j] != -1 || InputGrid[i][j] == ) {
+				Penalized = true;
+				return;
+			}
+		}
+	}
 }
 
 void Env_Putter::AddWindow(int x1, int y1, int x2, int y2)
