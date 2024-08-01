@@ -28,7 +28,9 @@ void Env_Putter::UpdateScores()
 		CheckRoomsCorrectArea() &&
 		CheckRoomsInternalConnectedness() &&
 		CheckCirculationsConnectivity() &&
-		CheckCirculationAccessToOutside()
+		CheckCirculationAccessToOutside() &&
+		CheckAllRoomsConnectedToCirculation() &&
+		CheckAllRoomsConnectedTogether()
 		) {
 	}
 
@@ -73,4 +75,8 @@ bool Env_Putter::CheckAllRoomsConnectedToCirculation(){
 	for(int i = 0; i < ROOM_COUNT; i++) rooms_connected_to_circulation += RoomConnectedToCirculation[i]?1:0;
 	Scores.AllRoomsConnectedToCirculation = ((double)rooms_connected_to_circulation / (double)ROOM_COUNT) * ALPHA + BETA;
 	return true;
+}
+
+bool Env_Putter::CheckAllRoomsConnectedTogether() {
+	Scores.AllRoomsConnectedTogether = ((double)RoomsConnections.BiggestSetSize() / (double)ROOM_COUNT) * ALPHA + BETA;
 }

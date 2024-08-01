@@ -77,6 +77,7 @@ private:
 	bool CheckCirculationsConnectivity();
 	bool CheckCirculationAccessToOutside();
 	bool CheckAllRoomsConnectedToCirculation();
+	bool CheckAllRoomsConnectedTogether();
 
 private:
 	// step subprocesses

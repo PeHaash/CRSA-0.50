@@ -69,6 +69,7 @@ void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 			CirculationConnections.Join(i, j, x1, y1); // connecting all together
 			if(InputGrid[i][j] == ACCESS) CirculationAccessToOutside = true;
 			RoomConnectedToCirculation[RoomGrid[i][j]] = true;
+			RoomsConnections.Join(RoomGrid[i][j], RoomGrid[x1][y1]);
 		}
 	}
 	// connecting to borders:
