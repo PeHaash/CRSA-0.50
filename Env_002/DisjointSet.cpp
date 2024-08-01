@@ -71,7 +71,7 @@ double DisjointSet::GetDisjointness() {
 	return *std::max_element(dsize.begin(), dsize.end());
 }*/
 
-int DisjointSet::BiggestSetSize()
+int DisjointSet::BiggestSetSize()const
 {
 	return BiggestSetCount;
 }
@@ -88,7 +88,7 @@ void DisjointSet2D::Join(int x1, int y1, int x2, int y2) {
 	disjointset.Join(y1 * Height + x1, y2 * Height + x2);
 }
 
-int DisjointSet2D::BiggestSetSize() {
+int DisjointSet2D::BiggestSetSize() const{
 	return disjointset.BiggestSetSize();
 }
 

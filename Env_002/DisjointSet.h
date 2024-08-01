@@ -16,7 +16,7 @@ class DisjointSet{
 		int GetNumOfSets()const;
 		double GetDisjointnessOfElements(std::vector<int> indexes);
 		double GetDisjointness();
-		int BiggestSetSize();
+		int BiggestSetSize()const;
 };
 
 
