@@ -61,21 +61,23 @@ double DisjointSet::GetDisjointness() {
 	return (double)(*std::max_element(dsize.begin(), dsize.end())) / NumberOfElements ;
 }
 
-int DisjointSet::BiggestSetSize()
+/*int DisjointSet::BiggestSetSize()
 {
 	std::vector<int> dsize(NumberOfElements, 0);
 	for (int i = 0; i < NumberOfElements; i++) {
 		dsize[FindParent(i)]++;
 	}
-	if (BiggestSetCount != *std::max_element(dsize.begin(), dsize.end())) {
-		throw("DEAD");
-	}
+
 	return *std::max_element(dsize.begin(), dsize.end());
+}*/
+
+int DisjointSet::BiggestSetSize()
+{
+	return BiggestSetCount;
 }
 
-
 DisjointSet2D::DisjointSet2D(int width, int height):
-	Width(width), Height(height), disjointset(width * height){
+	disjointset(width* height), Width(width), Height(height){
 }
 
 int DisjointSet2D::FindParent(int x, int y) {

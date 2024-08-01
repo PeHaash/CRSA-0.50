@@ -29,5 +29,5 @@ class DisjointSet2D {
 		DisjointSet2D() = default;
 		int FindParent(int x, int y);
 		void Join(int x1, int y1, int x2, int y2);
-		int BiggestSetSize();
+		int BiggestSetSize()const;
 };
