@@ -53,7 +53,7 @@ int32_t Env_Putter::Reset() {
 
 
 	RoomsConnections = DisjointSet(ROOM_COUNT);
-	CirculationConnections = DisjointSet2D(MAX_X, MAX_Y);
+	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
 	CirculationAccessToOutside = false;
 
 	NumberOfGridsUsedInCirulation = 0;
