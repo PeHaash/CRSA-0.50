@@ -67,3 +67,10 @@ bool Env_Putter::CheckCirculationAccessToOutside() {
 	Scores.CirculationAccessToOutside = (CirculationAccessToOutside? ALPHA : 0) + BETA;
 	return true;
 }
+
+bool Env_Putter::CheckAllRoomsConnectedToCirculation(){
+	int rooms_connected_to_circulation = 0;
+	for(int i = 0; i < ROOM_COUNT; i++) rooms_connected_to_circulation += RoomConnectedToCirculation[i]?1:0;
+	Scores.AllRoomsConnectedToCirculation = ((double)rooms_connected_to_circulation / (double)ROOM_COUNT) * ALPHA + BETA;
+	return true;
+}

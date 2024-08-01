@@ -51,6 +51,7 @@ private:
 	int WallGrid[MAX_X + 1][MAX_Y + 1]; // 0: no wall, 1: wall, 2: window
 	int CirculationGrid[MAX_X + 1][MAX_Y + 1]; // 0: no circulation, 1: circulation
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
+	bool RoomConnectedToCirculation[ROOM_COUNT];
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
 	// keep subspaces positions
 	Subspace Subspaces[MAX_SUBSPACE] = { -1 };
@@ -75,6 +76,7 @@ private:
 	bool CheckRoomsInternalConnectedness();
 	bool CheckCirculationsConnectivity();
 	bool CheckCirculationAccessToOutside();
+	bool CheckAllRoomsConnectedToCirculation();
 
 private:
 	// step subprocesses

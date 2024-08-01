@@ -13,7 +13,7 @@ struct Objectives {
 
 	double AllCirculationsAreConnected = 0;
 	double CirculationAccessToOutside = 0;
-
+	double AllRoomsConnectedToCirculation = 0;
 	//double FurniturePositions[FURNITURE_COUNT];
 	//double Connections[ROOM_COUNT * ROOM_COUNT];
 

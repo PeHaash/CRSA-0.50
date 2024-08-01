@@ -7,6 +7,7 @@ int32_t Env_Putter::Reset() {
 		RoomAreaCount[i] = 0;
 		SubspaceConnections[i] = DisjointSet(MAX_SS_PER_ROOM);
 		NumberOfSubspacesMade[i] = 0;
+		RoomConnectedToCirculation[i] = false;
 	}
 
 	// only for InputGrid
