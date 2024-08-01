@@ -26,7 +26,9 @@ void Env_Putter::UpdateScores()
 		//CheckRoomAvailability() &&
 		CheckAvailableSpaceUsed() &&
 		CheckRoomsCorrectArea() &&
-		CheckRoomsInternalConnectedness()
+		CheckRoomsInternalConnectedness() &&
+		CheckCirculationsConnectivity() &&
+		CheckCirculationAccessToOutside()
 		) {
 	}
 
@@ -58,5 +60,10 @@ bool Env_Putter::CheckRoomsInternalConnectedness() {
 
 bool Env_Putter::CheckCirculationsConnectivity(){
 	Scores.AllCirculationsAreConnected = ((double)CirculationConnections.BiggestSetSize() / (double)NumberOfGridsUsedInCirulation) * ALPHA + BETA;
+	return true;
 }
 
+bool Env_Putter::CheckCirculationAccessToOutside() {
+	Scores.CirculationAccessToOutside = (CirculationAccessToOutside? ALPHA : 0) + BETA;
+	return true;
+}

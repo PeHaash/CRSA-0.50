@@ -12,7 +12,7 @@ struct Objectives {
 	double RoomsInternalConnectedness[ROOM_COUNT] = { 0 }; // 0 to 1
 
 	double AllCirculationsAreConnected = 0;
-	double CirculationAccessToOutsize = 0;
+	double CirculationAccessToOutside = 0;
 
 	//double FurniturePositions[FURNITURE_COUNT];
 	//double Connections[ROOM_COUNT * ROOM_COUNT];

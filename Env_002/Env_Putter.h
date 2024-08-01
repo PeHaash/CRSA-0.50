@@ -74,6 +74,7 @@ private:
 	bool CheckRoomsCorrectArea();
 	bool CheckRoomsInternalConnectedness();
 	bool CheckCirculationsConnectivity();
+	bool CheckCirculationAccessToOutside();
 
 private:
 	// step subprocesses
