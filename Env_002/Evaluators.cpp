@@ -79,4 +79,5 @@ bool Env_Putter::CheckAllRoomsConnectedToCirculation(){
 
 bool Env_Putter::CheckAllRoomsConnectedTogether() {
 	Scores.AllRoomsConnectedTogether = ((double)RoomsConnections.BiggestSetSize() / (double)ROOM_COUNT) * ALPHA + BETA;
+	return true;
 }

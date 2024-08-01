@@ -16,7 +16,6 @@ struct Shared {
 	double Score;
 	bool Terminated, Truncated;
 
-
 	Shared(void* cust_env, int* input_grid, int* grid, int* room_area_count, int* used_space_count) :
 		CustEnv(cust_env), InputGrid(input_grid), Grids(grid), RoomAreaCount(room_area_count), UsedSpaceCount(used_space_count) {
 		Grid_id = 0;

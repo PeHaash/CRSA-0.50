@@ -6,6 +6,8 @@
 
 DisjointSet::DisjointSet(int n){
 	Par = std::vector<int> (n,-1);
+	Size = std::vector<int> (n, 1);
+	BiggestSetCount = 1; 
 	NumberOfSets = n;
 	NumberOfElements = n;
 }
@@ -16,11 +18,27 @@ int DisjointSet::FindParent(int p){
 }
 
 void DisjointSet::Join(int a, int b){
+	int ParentA = FindParent(a);
+	int ParentB = FindParent(b);
+	if (ParentA != ParentB){
+		// move all to the B set!
+		Par[ParentA] = ParentB;
+		Size[ParentB]+= Size[ParentA];
+		Size[ParentA] = 0;
+		BiggestSetCount = std::max(BiggestSetCount, Size[ParentB]);
+		NumberOfSets--;
+	}
+}
+
+/*
+void DisjointSet::Join(int a, int b){
+
 	if (FindParent(a) != FindParent(b)){
 		Par[FindParent(a)] = FindParent(b);
 		NumberOfSets--;
 	}
 }
+*/
 
 int DisjointSet::GetNumOfSets()const{
 	return NumberOfSets;
@@ -48,6 +66,9 @@ int DisjointSet::BiggestSetSize()
 	std::vector<int> dsize(NumberOfElements, 0);
 	for (int i = 0; i < NumberOfElements; i++) {
 		dsize[FindParent(i)]++;
+	}
+	if (BiggestSetCount != *std::max_element(dsize.begin(), dsize.end())) {
+		throw("DEAD");
 	}
 	return *std::max_element(dsize.begin(), dsize.end());
 }
