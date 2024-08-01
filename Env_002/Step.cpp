@@ -67,6 +67,7 @@ void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 			if (CirculationGrid[i][j] == NO_CIRCULATION) NumberOfGridsUsedInCirulation++;
 			CirculationGrid[i][j] = IS_CIRCULATION;
 			CirculationConnections.Join(i, j, x1, y1); // connecting all together
+			if(InputGrid[i][j] == ACCESS) CirculationAccessToOutside = true;
 		}
 	}
 	// connecting to borders:

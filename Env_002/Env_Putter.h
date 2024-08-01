@@ -59,6 +59,7 @@ private:
 	// keep door positions
 	DisjointSet2D CirculationConnections;
 	int NumberOfGridsUsedInCirulation;
+	bool CirculationAccessToOutside;
 	// keep windows positions
 	int UsedSpaceCount, AllAvailableSpace;
 	int StepCount = 0;
