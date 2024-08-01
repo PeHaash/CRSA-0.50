@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Macros.h"
 
 struct Objectives {
@@ -29,4 +30,6 @@ struct Objectives {
 
 };
 
+
 constexpr int OBJ_COUNT = sizeof(Objectives) / sizeof(double);
+

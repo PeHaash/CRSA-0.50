@@ -5,8 +5,10 @@
 
 Env_Putter::Env_Putter() {
 	// should make the Shared!!
-	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
-
+	//shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
+	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomGrid[0][0], &FurnitureGrid[0][0], &WallGrid[0][0],
+		&CirculationGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount, &NumberOfSubspacesMade[0], &RoomConnectedToCirculation[0],
+		reinterpret_cast<double*> (&Scores));
 }
 
 
