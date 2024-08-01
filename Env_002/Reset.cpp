@@ -32,8 +32,8 @@ int32_t Env_Putter::Reset() {
 	}
 
 	// For grids:
-	for (int i = 0; i < MAX_X + 1; i++) {
-		for (int j = 0; j < MAX_Y + 1; j++) {
+	for (int i = 0; i <= MAX_X + 1; i++) {
+		for (int j = 0; j <= MAX_Y + 1; j++) {
 			FurnitureGrid[i][j] = EMPTY;
 			WallGrid[i][j] = NO_WALL;
 			RoomGrid[i][j] = EMPTY;

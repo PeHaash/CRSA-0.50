@@ -3,16 +3,16 @@
 #define __CUST_ENV__ Env_Putter
 
 #ifdef _MSC_VER
-	#define ROOM_COUNT 3
-	#define MAX_SS_PER_ROOM 4
-	#define FURNITURE_COUNT 4
+	#define ROOM_COUNT 10
+	#define MAX_SS_PER_ROOM 20
+	#define FURNITURE_COUNT 30
 	#define MAX_X 32
 	#define MAX_Y 32
 	#define GOAL_AREAS { 0.3,0.4,0.3 }
 	#define PENALIZED_CONSTANT -5
 	#define ALPHA 1
 	#define BETA 0.2
-	#define MAX_STEPS 10 // TODO: Make max-steps + termination better
+	#define MAX_STEPS 50 // TODO: Make max-steps + termination better
 	#define RESET_GRIDS_COUNT 30 /// DONT FORGET TO ADD GRID_ID TO THE WHOLE SHARED STUFF
 #endif
 

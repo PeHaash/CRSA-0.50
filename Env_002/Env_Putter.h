@@ -44,12 +44,12 @@ private:
 
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
-	int InputGrid[MAX_X + 1][MAX_Y + 1] = { 0 }; // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
-	int SubspaceGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
-	int FurnitureGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty, -2: unavailable
-	int RoomGrid[MAX_X + 1][MAX_Y + 1] = { -1 }; // -1: empty
-	int WallGrid[MAX_X + 1][MAX_Y + 1]; // 0: no wall, 1: wall, 2: window
-	int CirculationGrid[MAX_X + 1][MAX_Y + 1]; // 0: no circulation, 1: circulation
+	int InputGrid[MAX_X + 2][MAX_Y + 2] = { 0 }; // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
+	int SubspaceGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
+	int FurnitureGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
+	int RoomGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty
+	int WallGrid[MAX_X + 2][MAX_Y + 2]; // 0: no wall, 1: wall, 2: window
+	int CirculationGrid[MAX_X + 2][MAX_Y + 2]; // 0: no circulation, 1: circulation
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
 	bool RoomConnectedToCirculation[ROOM_COUNT];
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
