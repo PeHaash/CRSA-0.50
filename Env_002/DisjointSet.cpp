@@ -53,6 +53,22 @@ int DisjointSet::BiggestSetSize()
 }
 
 
+DisjointSet2D::DisjointSet2D(int width, int height):
+	Width(width), Height(height), disjointset(width * height){
+}
+
+int DisjointSet2D::FindParent(int x, int y) {
+	return disjointset.FindParent(y * Height + x);
+}
+
+void DisjointSet2D::Join(int x1, int y1, int x2, int y2) {
+	disjointset.Join(y1 * Height + x1, y2 * Height + x2);
+}
+
+int DisjointSet2D::BiggestSetSize() {
+	return disjointset.BiggestSetSize();
+}
+
 
 
 // very useful function! (inja mitoonim bebinim ye zirgorooh az disjoint set e ma aya beham vaslan ya na)

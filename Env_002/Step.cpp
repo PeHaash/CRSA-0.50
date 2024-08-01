@@ -48,7 +48,7 @@ int32_t Env_Putter::Step() {
 void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 {
 	// TODO: Add Door
-	
+
 	// Good spaces: inside Rooms or Acsess, not part of furnitures 
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
@@ -64,8 +64,19 @@ void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
+			if (CirculationGrid[i][j] == NO_CIRCULATION) NumberOfGridsUsedInCirulation++;
 			CirculationGrid[i][j] = IS_CIRCULATION;
+			CirculationConnections.Join(i, j, x1, y1); // connecting all together
 		}
+	}
+	// connecting to borders:
+	for (int i = x1; i <= x2; i++) {
+		if (CirculationGrid[i][y1 - 1] == IS_CIRCULATION) CirculationConnections.Join(i, y1 - 1, x1, y1);
+		if (CirculationGrid[i][y2 + 1] == IS_CIRCULATION) CirculationConnections.Join(i, y2 + 1, x1, y1);
+	}
+	for (int j = y1; j <= y2; j++) {
+		if (CirculationGrid[x1 - 1][j] == IS_CIRCULATION) CirculationConnections.Join(x1 - 1, j, x1, y1);
+		if (CirculationGrid[x2 + 1][j] == IS_CIRCULATION) CirculationConnections.Join(x2 + 1, j, x1, y1);
 	}
 
 
@@ -171,8 +182,8 @@ void Env_Putter::UpdateWallsOfSubspace(int subspace_id) {
 	// Add walls for the top and bottom
 	for (int x = ss.x1 + 1; x <= ss.x2 - 1; x++) {
 		bool top_has_different_room_neighbour =
-			(RoomGrid[x - 1][ss.y1 - 1] != room_id ||  RoomGrid[x][ss.y1 - 1] != room_id || RoomGrid[x + 1][ss.y1 - 1] != room_id);
-		WallGrid[x][ss.y1] = top_has_different_room_neighbour ? IS_WALL: NO_WALL;
+			(RoomGrid[x - 1][ss.y1 - 1] != room_id || RoomGrid[x][ss.y1 - 1] != room_id || RoomGrid[x + 1][ss.y1 - 1] != room_id);
+		WallGrid[x][ss.y1] = top_has_different_room_neighbour ? IS_WALL : NO_WALL;
 
 		bool bottom_has_different_room_neighbour =
 			(RoomGrid[x - 1][ss.y2 + 1] != room_id || RoomGrid[x][ss.y2 + 1] != room_id || RoomGrid[x + 1][ss.y2 + 1] != room_id);

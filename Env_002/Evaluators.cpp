@@ -56,3 +56,7 @@ bool Env_Putter::CheckRoomsInternalConnectedness() {
 }
 
 
+bool Env_Putter::CheckCirculationsConnectivity(){
+	Scores.AllCirculationsAreConnected = ((double)CirculationConnections.BiggestSetSize() / (double)NumberOfGridsUsedInCirulation) * ALPHA + BETA;
+}
+

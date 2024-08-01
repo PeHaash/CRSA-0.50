@@ -57,6 +57,8 @@ private:
 	Subspace Furnitures[FURNITURE_COUNT] = { -1 };
 	DisjointSet SubspaceConnections[ROOM_COUNT];// = {MAX_SS_PER_ROOM}; 
 	// keep door positions
+	DisjointSet2D CirculationConnections;
+	int NumberOfGridsUsedInCirulation;
 	// keep windows positions
 	int UsedSpaceCount, AllAvailableSpace;
 	int StepCount = 0;
@@ -70,6 +72,8 @@ private:
 	bool CheckAvailableSpaceUsed();
 	bool CheckRoomsCorrectArea();
 	bool CheckRoomsInternalConnectedness();
+	bool CheckCirculationsConnectivity();
+
 private:
 	// step subprocesses
 	void AddCirculation(int x1, int y1, int x2, int y2);
