@@ -27,9 +27,9 @@ constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 struct Subspace {
 	int x1, y1, x2, y2;
 	bool SharesAWallWith(Subspace b)const {
-		if (this->x1 + 1 == b.x2 || this->x2 == b.x1 + 1) // vertical connections
+		if (this->x1 - 1 == b.x2 || this->x2 == b.x1 - 1) // vertical connections
 			if (this->y1 <= b.y2 && this->y2 >= b.y1) return true;
-		if (this->y1 + 1 == b.y2 || this->y2 == b.y1 + 1) // horizantal
+		if (this->y1 - 1 == b.y2 || this->y2 == b.y1 - 1) // horizantal
 			if (this->x1 <= b.y1 && this->x2 >= b.x1) return true;
 		return false;
 	}

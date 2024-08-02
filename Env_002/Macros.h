@@ -4,7 +4,7 @@
 
 #ifdef _MSC_VER
 	#define ROOM_COUNT 10
-	#define MAX_SS_PER_ROOM 20
+	#define MAX_SS_PER_ROOM 3
 	#define FURNITURE_COUNT 30
 	#define MAX_X 32
 	#define MAX_Y 32
