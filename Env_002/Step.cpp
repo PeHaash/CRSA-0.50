@@ -97,6 +97,13 @@ void Env_Putter::AddEntrance(int x1, int y1, int x2, int y2)
 
 void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 {
+	// check if the space is thin
+	if (x2 - x1 <= 1 || y2 - y1 <= 1) {
+		// so thin, can cause problem with the walls
+		Penalized = true;
+		return;
+	}
+
 	// check if we put this before
 	if (Subspaces[subspace_id].x1 != -1) {
 		// we have put it before
@@ -134,15 +141,13 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 	UpdateWallsOfSubspace(subspace_id);
 	// add connections between ss of the same room
 	for (int i = room_first_ss_id; i < room_first_ss_id + MAX_SS_PER_ROOM; i++) {
-		if (i != subspace_id && Subspaces[subspace_id].SharesAWallWith(Subspaces[i])) {
+		if (i != subspace_id && Subspaces[i].x1 != -1 && Subspaces[subspace_id].SharesAWallWith(Subspaces[i])) {
 			// connected subspace!
 			UpdateWallsOfSubspace(i);
 			SubspaceConnections[room_id].Join(i - room_first_ss_id, subspace_id - room_first_ss_id);
 		}
 
 	}
-
-
 
 }
 
