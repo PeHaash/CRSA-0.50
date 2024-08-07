@@ -14,5 +14,7 @@
 	#define BETA 0.2
 	#define MAX_STEPS 50 // TODO: Make max-steps + termination better
 	#define RESET_GRIDS_COUNT 30 /// DONT FORGET TO ADD GRID_ID TO THE WHOLE SHARED STUFF
+	#define CIRCULATION_GRID_SIZE 4
+	#define WEIGHTS {1.0,5,40,2.0,-1}
 #endif
 

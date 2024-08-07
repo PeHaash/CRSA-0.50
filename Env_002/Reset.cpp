@@ -60,7 +60,7 @@ int32_t Env_Putter::Reset() {
 	UsedSpaceCount = 0;
 	StepCount = 0;
 	PreviousScore = 0;
-	Scores = 0;
-	Weights = 1; // TODO: Weights are constant, get set in the constructor, or initialization, from MACROS
+	Scores = 0.0;
+	Weights = Objectives(WEIGHTS); // TODO: Weights are constant, get set in the constructor, or initialization, from MACROS
 	return 0;
 }

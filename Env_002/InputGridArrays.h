@@ -1,9 +1,9 @@
 
-static_assert(MAX_X == 32,"MAX_X inconsistency");
-static_assert(MAX_Y == 32,"MAX_Y inconsistency");
+static_assert(MAX_X <= 32,"MAX_X inconsistency");
+static_assert(MAX_Y <= 32,"MAX_Y inconsistency");
 static_assert(RESET_GRIDS_COUNT <= 30,"RESET_GRIDS_COUNT inconsistency");
 
-int PresetInputArrays[1][MAX_X + 1][MAX_Y + 1]={
+int PresetInputArrays[1][33][33]={
 	{
 		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1,-1,-1,-1,-1,},
 		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1,-1,-1,-1,-1,},

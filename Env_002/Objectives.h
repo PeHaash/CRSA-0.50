@@ -1,5 +1,5 @@
 #pragma once
-
+#include <initializer_list>
 #include "Macros.h"
 
 struct Objectives {
@@ -23,6 +23,7 @@ struct Objectives {
 
 	Objectives(double t);
 	Objectives() = default; // TODO: delete this!
+	Objectives(std::initializer_list<double> array);
 	//Objectives(array);
 	static double Average(Objectives s, Objectives w);
 	static double MappedScore(double min_num, double goal_num, double max_num, double status);

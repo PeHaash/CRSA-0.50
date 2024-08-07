@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Objectives.h"
 
 
@@ -9,6 +10,21 @@ Objectives::Objectives(double t) {
 	}
 }
 
+Objectives::Objectives(std::initializer_list<double> array) {
+	double* ss = reinterpret_cast<double*>(this);
+	for (int i = 0; i < OBJ_COUNT; i++) {
+		ss[i] = 1;
+	}
+	int index = 0;
+	for (double element : array) {
+		if (element != -1.0)
+			ss[index] = element;
+		else 
+			break;
+		index++;
+	}
+
+}
 
 double Objectives::Average(Objectives s, Objectives w) {
 	double sum = 0, sumOfws = 0;

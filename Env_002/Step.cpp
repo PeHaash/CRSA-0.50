@@ -1,4 +1,10 @@
+#include <iostream>
+
 #include "Env_Putter.h"
+
+
+#define E_LOW(x)  (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + 1)
+#define E_HIGH(x) (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + CIRCULATION_GRID_SIZE)
 
 
 int32_t Env_Putter::Step() {
@@ -10,20 +16,20 @@ int32_t Env_Putter::Step() {
 
 	Penalized = false;
 
-	if (type == 0 || type == 1) {
-		AddCirculation(x1, y1, x2, y2);
-	}
-	else if (type == 2) {
+	if (type == 0) {
 		AddWindow(x1, y1, x2, y2);
 	}
-	else if (type == 3) {
-		AddEntrance(x1, y1, x2, y2);
+	else if (type == 1) {
+		AddCirculation(E_LOW(x1), E_LOW(y1), E_HIGH(x2), E_HIGH(y2));
 	}
-	else if (type < 4 + MAX_SUBSPACE) {
-		AddSubspace(x1, y1, x2, y2, type - 4);
+	//else if (type == 3) {
+	//	AddEntrance(x1, y1, x2, y2);
+	//}
+	else if (type < 2 + MAX_SUBSPACE) {
+		AddSubspace(x1, y1, x2, y2, type - 2);
 	}
 	else {
-		AddFurniture(x1, y1, x2, y2, type - (4 + MAX_SUBSPACE));
+		AddFurniture(x1, y1, x2, y2, type - (2 + MAX_SUBSPACE));
 	}
 	if (Penalized == false) {
 		UpdateScores();
@@ -48,7 +54,7 @@ int32_t Env_Putter::Step() {
 void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 {
 	// TODO: Add Door
-
+	std::cout <<x1 << ' ' <<y1 <<' ' <<x2 <<' ' <<y2 <<std::endl;
 	// Good spaces: inside Rooms or Acsess, not part of furnitures 
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
@@ -99,7 +105,7 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 {
 	// check if the space is thin
 	if (x2 - x1 <= 1 || y2 - y1 <= 1) {
-		// so thin, can cause problem with the walls
+		// too thin, can cause problem with the walls
 		Penalized = true;
 		return;
 	}
