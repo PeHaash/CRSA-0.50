@@ -67,6 +67,7 @@ private:
 	int UsedSpaceCount, AllAvailableSpace;
 	int StepCount = 0;
 	double PreviousScore = 0; // we only send Delta!
+	const double WeightsInArray[OBJ_COUNT] = WEIGHTS;
 	const Objectives Weights;
 	Objectives Scores;
 	bool Penalized;

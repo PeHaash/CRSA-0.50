@@ -4,12 +4,12 @@
 #include "Env_Putter.h"
 
 Env_Putter::Env_Putter()
-	:Weights(WEIGHTS) {
+	:Weights(WeightsInArray) {
 
 	RoomsConnections = DisjointSet(ROOM_COUNT);
 	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
 	
-	Scores = 0;
+	Scores = Objectives(0.0);
 
 	for (int i = 0; i < ROOM_COUNT; i++) {
 		SubspaceConnections[i] = DisjointSet(MAX_SS_PER_ROOM);
@@ -45,7 +45,7 @@ int32_t Env_Putter::Render()
 
 	Scores.Print();
 	std::cout << '\n';
-	//Weights.Print();
+	Weights.Print();
 	return 0;
 }
 

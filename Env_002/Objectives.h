@@ -21,9 +21,10 @@ struct Objectives {
 
 	// many many more!
 
-	Objectives(double t);
+	explicit Objectives(double t);
 	Objectives() = default;
-	Objectives(std::initializer_list<double> array);
+	//Objectives(std::initializer_list<double> array);
+	explicit Objectives(const double Array[]);
 	void Reset(double t);
 	//Objectives(array);
 	static double Average(Objectives s, Objectives w);

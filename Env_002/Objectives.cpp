@@ -17,7 +17,7 @@ void Objectives::Reset(double t) {
 	}
 }
 
-
+/*
 Objectives::Objectives(std::initializer_list<double> array) {
 	double* ss = reinterpret_cast<double*>(this);
 	for (int i = 0; i < OBJ_COUNT; i++) {
@@ -31,7 +31,15 @@ Objectives::Objectives(std::initializer_list<double> array) {
 			break;
 		index++;
 	}
+}*/
 
+Objectives::Objectives(const double Array[]) {
+	double* ss = reinterpret_cast<double*>(this);
+	bool we_saw_the_minus_one = false;
+	for (int i = 0; i < OBJ_COUNT; i++) {
+		if(Array[i] == -1) we_saw_the_minus_one = true;
+		ss[i] = we_saw_the_minus_one? 1 : Array[i];
+	}
 }
 
 double Objectives::Average(Objectives s, Objectives w) {
