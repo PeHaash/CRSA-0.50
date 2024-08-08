@@ -36,5 +36,5 @@ struct Shared {
 		Terminated = Truncated = false;
 		Score = 0;
 	}
-	Shared() = default;
+	Shared() = default; 
 };

@@ -17,3 +17,17 @@
 	#define CIRCULATION_GRID_SIZE 4
 	#define WEIGHTS {1.0,5,40,2.0,-1}
 #endif
+
+//#define ROOM_COUNT 3
+//#define MAX_SS_PER_ROOM 4
+//#define FURNITURE_COUNT 4
+//#define MAX_X 32
+//#define MAX_Y 32
+//#define GOAL_AREAS { 0.5,0.2,0.3 }
+//#define PENALIZED_CONSTANT 0
+//#define ALPHA 0.9
+//#define BETA 0.1
+//#define MAX_STEPS 20
+//#define RESET_GRIDS_COUNT 1
+//#define CIRCULATION_GRID_SIZE 4
+//#define WEIGHTS {5.0, -1}

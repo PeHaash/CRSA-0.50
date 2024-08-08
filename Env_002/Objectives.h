@@ -22,8 +22,9 @@ struct Objectives {
 	// many many more!
 
 	Objectives(double t);
-	Objectives() = default; // TODO: delete this!
+	Objectives() = default;
 	Objectives(std::initializer_list<double> array);
+	void Reset(double t);
 	//Objectives(array);
 	static double Average(Objectives s, Objectives w);
 	static double MappedScore(double min_num, double goal_num, double max_num, double status);

@@ -10,6 +10,14 @@ Objectives::Objectives(double t) {
 	}
 }
 
+void Objectives::Reset(double t) {
+	double* ss = reinterpret_cast<double*>(this);
+	for (int i = 0; i < OBJ_COUNT; i++) {
+		ss[i] = t;
+	}
+}
+
+
 Objectives::Objectives(std::initializer_list<double> array) {
 	double* ss = reinterpret_cast<double*>(this);
 	for (int i = 0; i < OBJ_COUNT; i++) {

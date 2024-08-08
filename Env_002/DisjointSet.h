@@ -9,8 +9,9 @@ class DisjointSet{
 		int NumberOfSets;
 		int NumberOfElements;
 	public:
-		DisjointSet() = default;  // for instantiations, later should be defined properly
+		DisjointSet() = default; 
 		DisjointSet(int n);
+		void Reset();
 		int FindParent(int p);
 		void Join(int a, int b);
 		int GetNumOfSets()const;
@@ -27,6 +28,7 @@ class DisjointSet2D {
 	public:
 		DisjointSet2D(int width, int height);
 		DisjointSet2D() = default;
+		void Reset();
 		int FindParent(int x, int y);
 		void Join(int x1, int y1, int x2, int y2);
 		int BiggestSetSize()const;

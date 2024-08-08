@@ -2,10 +2,12 @@
 #include "InputGridArrays.h"
 
 int32_t Env_Putter::Reset() {
+	// >> to avoid memory leak, we do not have any constructors of structs/classes here. they can cause problems
+
 	// For things that are per room:
 	for (int i = 0; i < ROOM_COUNT; i++) {
 		RoomAreaCount[i] = 0;
-		SubspaceConnections[i] = DisjointSet(MAX_SS_PER_ROOM);
+		SubspaceConnections[i].Reset();
 		NumberOfSubspacesMade[i] = 0;
 		RoomConnectedToCirculation[i] = false;
 	}
@@ -51,16 +53,16 @@ int32_t Env_Putter::Reset() {
 		Furnitures[i] = { -1 };
 	}
 
-
-	RoomsConnections = DisjointSet(ROOM_COUNT);
-	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
+	
+	RoomsConnections.Reset();
+	CirculationConnections.Reset();
 	CirculationAccessToOutside = false;
 
 	NumberOfGridsUsedInCirulation = 0;
 	UsedSpaceCount = 0;
 	StepCount = 0;
 	PreviousScore = 0;
-	Scores = 0.0;
-	Weights = Objectives(WEIGHTS); // TODO: Weights are constant, get set in the constructor, or initialization, from MACROS
+	Scores.Reset(0);
+	//Weights = Objectives(WEIGHTS); // TODO: Weights are constant, get set in the constructor, or initialization, from MACROS
 	return 0;
 }

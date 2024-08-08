@@ -4,13 +4,20 @@
 
 #include "DisjointSet.h"
 
-DisjointSet::DisjointSet(int n){
+DisjointSet::DisjointSet(int n):NumberOfElements (n){
 	Par = std::vector<int> (n,-1);
 	Size = std::vector<int> (n, 1);
 	BiggestSetCount = 1; 
 	NumberOfSets = n;
-	NumberOfElements = n;
 }
+
+void DisjointSet::Reset() {
+	std::fill(Par.begin(), Par.end(), -1);
+	std::fill(Size.begin(), Size.end(), -1);
+	BiggestSetCount = 1;
+	NumberOfSets = NumberOfElements;
+}
+
 
 int DisjointSet::FindParent(int p){
 	if (Par[p] == -1) return p;
@@ -30,15 +37,7 @@ void DisjointSet::Join(int a, int b){
 	}
 }
 
-/*
-void DisjointSet::Join(int a, int b){
 
-	if (FindParent(a) != FindParent(b)){
-		Par[FindParent(a)] = FindParent(b);
-		NumberOfSets--;
-	}
-}
-*/
 
 int DisjointSet::GetNumOfSets()const{
 	return NumberOfSets;
@@ -77,7 +76,11 @@ int DisjointSet::BiggestSetSize()const
 }
 
 DisjointSet2D::DisjointSet2D(int width, int height):
-	disjointset(width* height), Width(width), Height(height){
+	disjointset(width * height), Width(width), Height(height){
+}
+
+void DisjointSet2D::Reset() {
+	disjointset.Reset();
 }
 
 int DisjointSet2D::FindParent(int x, int y) {

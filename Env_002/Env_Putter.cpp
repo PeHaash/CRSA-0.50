@@ -3,7 +3,21 @@
 
 #include "Env_Putter.h"
 
-Env_Putter::Env_Putter() {
+Env_Putter::Env_Putter()
+	:Weights(WEIGHTS) {
+
+	RoomsConnections = DisjointSet(ROOM_COUNT);
+	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
+	
+	Scores = 0;
+
+	for (int i = 0; i < ROOM_COUNT; i++) {
+		SubspaceConnections[i] = DisjointSet(MAX_SS_PER_ROOM);
+	}
+
+	
+	
+
 	
 	// should make the Shared!!
 	//shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount);

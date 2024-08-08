@@ -67,7 +67,8 @@ private:
 	int UsedSpaceCount, AllAvailableSpace;
 	int StepCount = 0;
 	double PreviousScore = 0; // we only send Delta!
-	Objectives Weights, Scores;
+	const Objectives Weights;
+	Objectives Scores;
 	bool Penalized;
 private:
 	void UpdateScores();
