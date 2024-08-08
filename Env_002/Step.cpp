@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Env_Putter.h"
 
 
@@ -54,7 +52,6 @@ int32_t Env_Putter::Step() {
 void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 {
 	// TODO: Add Door
-	std::cout <<x1 << ' ' <<y1 <<' ' <<x2 <<' ' <<y2 <<std::endl;
 	// Good spaces: inside Rooms or Acsess, not part of furnitures 
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {

@@ -24,6 +24,8 @@ constexpr int NO_CIRCULATION = 0, IS_CIRCULATION = 1;
 constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 
 
+static_assert(MAX_X % CIRCULATION_GRID_SIZE == 0 && MAX_Y % CIRCULATION_GRID_SIZE == 0, "NOT ok size for the CIRCULATION_GRID_SIZE");
+
 struct Subspace {
 	int x1, y1, x2, y2;
 	bool SharesAWallWith(Subspace b)const {
