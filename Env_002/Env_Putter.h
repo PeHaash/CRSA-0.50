@@ -87,7 +87,7 @@ private:
 	// step subprocesses
 	void AddCirculation(int x1, int y1, int x2, int y2);
 	void AddWindow(int x1, int y1, int x2, int y2);
-	void AddEntrance(int x1, int y1, int x2, int y2);
+	//void AddEntrance(int x1, int y1, int x2, int y2);
 	void AddSubspace(int x1, int y1, int x2, int y2, int subspace_id);
 	void AddFurniture(int x1, int y1, int x2, int y2, int furniture_id);
 private:

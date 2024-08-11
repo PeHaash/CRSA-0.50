@@ -135,6 +135,8 @@
     <ClInclude Include="Shared.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddCirculation.cpp" />
+    <ClCompile Include="AddSubspace.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="Env_Putter.cpp" />
     <ClCompile Include="Evaluators.cpp" />
