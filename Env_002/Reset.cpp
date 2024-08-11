@@ -12,24 +12,13 @@ int32_t Env_Putter::Reset() {
 		RoomConnectedToCirculation[i] = false;
 	}
 
-	// only for InputGrid
+	// for InputGrid & SubspaceGrid
 	AllAvailableSpace = 0;
-	if (shared_data.Grid_id == -1) {
-		// customized input from the notebook
-		for (int i = 0; i < MAX_X + 1; i++) {
-			for (int j = 0; j < MAX_Y + 1; j++) {
-				SubspaceGrid[i][j] = (InputGrid[i][j] == FREE) ? EMPTY : UNAVAILABLE;
-				AllAvailableSpace += (InputGrid[i][j] == FREE);
-			}
-		}
-	}
-	else {
-		// fixed input from the code we have:
-		for (int i = 0; i < MAX_X + 1; i++) {
-			for (int j = 0; j < MAX_Y + 1; j++) {
-				SubspaceGrid[i][j] = (PresetInputArrays[shared_data.Grid_id][i][j] == FREE) ? EMPTY : UNAVAILABLE;
-				AllAvailableSpace += (PresetInputArrays[shared_data.Grid_id][i][j] == FREE);
-			}
+	for (int i = 0; i < MAX_X + 1; i++) {
+		for (int j = 0; j < MAX_Y + 1; j++) {
+			InputGrid[i][j] = PresetInputArrays[shared_data.Grid_id][i][j];
+			SubspaceGrid[i][j] = (InputGrid[i][j] == FREE) ? EMPTY : UNAVAILABLE;
+			AllAvailableSpace += (InputGrid[i][j] == FREE);
 		}
 	}
 
