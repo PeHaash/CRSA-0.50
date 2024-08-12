@@ -30,7 +30,8 @@ void Env_Putter::UpdateScores()
 		CheckCirculationsConnectivity() &&
 		CheckCirculationAccessToOutside() &&
 		CheckAllRoomsConnectedToCirculation() &&
-		CheckAllRoomsConnectedTogether()
+		CheckAllRoomsConnectedTogether() &&
+		CheckAdjacencyMatrix()
 		) {
 	}
 
@@ -83,5 +84,22 @@ bool Env_Putter::CheckAllRoomsConnectedToCirculation(){
 
 bool Env_Putter::CheckAllRoomsConnectedTogether() {
 	Scores.AllRoomsConnectedTogether = ((double)RoomsConnections.BiggestSetSize() / (double)ROOM_COUNT) * ALPHA + BETA;
+	return true;
+}
+
+bool Env_Putter::CheckAdjacencyMatrix() {
+	double goals = 0, score = 0;
+	for (int i = 0; i < ROOM_COUNT; i++) {
+		for (int j = 0; j < i; j++) {
+			if (AdjacencyMatrixGoal[i][j] != 0) {
+				goals+=1;
+				if (AdjacencyMatrixGoal[j][i] == -1 && AdjacencyMatrix[i][j] == 1) score += 0; // very bad
+				else if (AdjacencyMatrixGoal[j][i] == -1 && AdjacencyMatrix[i][j] == 0) score +=1; // ok, good
+				else if (AdjacencyMatrixGoal[j][i] ==  1 && AdjacencyMatrix[i][j] == 1) score +=1; // yes, good door
+				else if (AdjacencyMatrixGoal[j][i] ==  1 && AdjacencyMatrix[i][j] == 0) score +=0.5; // maybe next time
+			}
+		}
+	}
+	if (goals != 0) Scores.CorrectAdjacencyMatrix = (score / goals) * ALPHA + BETA;
 	return true;
 }

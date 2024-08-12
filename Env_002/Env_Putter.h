@@ -43,7 +43,11 @@ class Env_Putter {
 public:
 	Shared shared_data; // data shared between the front & back
 private:
-
+	const int AdjacencyMatrixGoal[ROOM_COUNT][ROOM_COUNT] = 
+		{{0, 1, -1},
+		 {1, 0, 1},
+		 {-1, 1,0}};
+	int AdjacencyMatrix[ROOM_COUNT][ROOM_COUNT];
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
 	int InputGrid[MAX_X + 2][MAX_Y + 2] = { 0 }; // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
@@ -82,6 +86,7 @@ private:
 	bool CheckCirculationAccessToOutside();
 	bool CheckAllRoomsConnectedToCirculation();
 	bool CheckAllRoomsConnectedTogether();
+	bool CheckAdjacencyMatrix();
 
 private:
 	// step subprocesses
@@ -93,6 +98,7 @@ private:
 private:
 	// helper functions for step
 	void UpdateWallsOfSubspace(int subspace_id);
+	void UpdateAdjacencyMatrix(int x1, int y1, int x2, int y2);
 
 public:
 	Env_Putter();

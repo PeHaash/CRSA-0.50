@@ -16,6 +16,8 @@ struct Objectives {
 	double CirculationAccessToOutside = 0;
 	double AllRoomsConnectedToCirculation = 0;
 	double AllRoomsConnectedTogether = 0;
+	double CorrectAdjacencyMatrix = 0;
+
 	//double FurniturePositions[FURNITURE_COUNT];
 	//double Connections[ROOM_COUNT * ROOM_COUNT];
 
@@ -23,10 +25,8 @@ struct Objectives {
 
 	explicit Objectives(double t);
 	Objectives() = default;
-	//Objectives(std::initializer_list<double> array);
 	explicit Objectives(const double Array[]);
 	void Reset(double t);
-	//Objectives(array);
 	static double Average(Objectives s, Objectives w);
 	static double MappedScore(double min_num, double goal_num, double max_num, double status);
 	void Print() const;

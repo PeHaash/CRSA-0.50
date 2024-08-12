@@ -3,7 +3,7 @@
 #define __CUST_ENV__ Env_Putter
 
 #ifdef _MSC_VER
-	#define ROOM_COUNT 10
+	#define ROOM_COUNT 3
 	#define MAX_SS_PER_ROOM 3
 	#define FURNITURE_COUNT 30
 	#define MAX_X 32

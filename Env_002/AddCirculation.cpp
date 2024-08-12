@@ -45,6 +45,30 @@ void Env_Putter::AddCirculation(int x1, int y1, int x2, int y2)
 	}
 
 	// Connecting the rooms, in the adjacency matrix
+	for (int i = x1; i <= x2; i++) {
+		for (int j = y1; i <= y2; j++) {
+			if (i == x1) {
+				UpdateAdjacencyMatrix(i, j, i - 1, j);
+			}
+			if (j == y1) {
+				UpdateAdjacencyMatrix(i, j, i, j - 1);
+			}
+			UpdateAdjacencyMatrix(i, j, i + 1, j);
+			UpdateAdjacencyMatrix(i, j, i, j + 1);
+		}
+	}
 
 
+}
+
+
+void Env_Putter::UpdateAdjacencyMatrix(int x1, int y1, int x2, int y2) {
+	if(RoomGrid[x1][y1] != EMPTY && 
+		RoomGrid[x2][y2] != EMPTY && 
+		CirculationGrid[x2][y2] != NO_CIRCULATION &&
+		CirculationGrid[x1][y1] != NO_CIRCULATION && // not needed really, guaranteed to be true
+		RoomGrid[x1][y1] != RoomGrid[x2][y2]) {
+			AdjacencyMatrix[RoomGrid[x1][y1]][RoomGrid[x2][y2]] = 1;
+			AdjacencyMatrix[RoomGrid[x2][y2]][RoomGrid[x1][y1]] = 1;
+	}
 }

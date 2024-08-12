@@ -12,6 +12,13 @@ int32_t Env_Putter::Reset() {
 		RoomConnectedToCirculation[i] = false;
 	}
 
+	// Adjacency Matrix
+	for (int i = 0; i < ROOM_COUNT; i++) {
+		for (int j = 0; j < ROOM_COUNT; j++) {
+			AdjacencyMatrix[i][j] = 0;
+		}
+	}
+
 	// for InputGrid & SubspaceGrid
 	AllAvailableSpace = 0;
 	for (int i = 0; i < MAX_X + 1; i++) {
