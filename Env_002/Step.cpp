@@ -6,9 +6,8 @@
 
 
 int32_t Env_Putter::Step() {
-	// code is 1-based, but the input is 0 based, so... +1,
-	// ++ to keep 1-index
-	int x1 = shared_data.x1 + 1, x2 = shared_data.x2 + 1, y1 = shared_data.y1 + 1, y2 = shared_data.y2 + 1, type = shared_data.type;
+	// input from gym is 1-based
+	int x1 = shared_data.x1, x2 = shared_data.x2, y1 = shared_data.y1, y2 = shared_data.y2, type = shared_data.type;
 	if (x2 < x1) std::swap(x1, x2);
 	if (y2 < y1) std::swap(y1, y2); // TODO: maybe better to get rid of these two lines for swapping
 
