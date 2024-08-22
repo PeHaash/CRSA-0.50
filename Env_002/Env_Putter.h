@@ -26,6 +26,8 @@ constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 
 static_assert(MAX_X % CIRCULATION_GRID_SIZE == 0 && MAX_Y % CIRCULATION_GRID_SIZE == 0, "NOT ok size for the CIRCULATION_GRID_SIZE");
 
+// class SpaceFiller{}; // maybe to keep the furniture and ss together
+
 struct Subspace {
 	int x1, y1, x2, y2;
 	bool SharesAWallWith(Subspace b)const {
@@ -43,10 +45,7 @@ class Env_Putter {
 public:
 	Shared shared_data; // data shared between the front & back
 private:
-	const int AdjacencyMatrixGoal[ROOM_COUNT][ROOM_COUNT] = 
-		{{0, 1, -1},
-		 {1, 0, 1},
-		 {-1, 1,0}};
+	const int AdjacencyMatrixGoal[ROOM_COUNT][ROOM_COUNT] = ADJACENCY_MATRIX_GOAL;
 	int AdjacencyMatrix[ROOM_COUNT][ROOM_COUNT];
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
