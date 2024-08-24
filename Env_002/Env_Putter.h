@@ -1,5 +1,6 @@
 #pragma once
-#include "cstdint"
+#include <cstdint>
+#include <algorithm>
 
 #include "Macros.h"
 #include "Shared.h"

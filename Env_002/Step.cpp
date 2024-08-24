@@ -4,10 +4,30 @@
 #define E_LOW(x)  (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + 1)
 #define E_HIGH(x) (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + CIRCULATION_GRID_SIZE)
 
+#define kk
+
+inline int mapFloatToInt(float value, int max) {
+	// Map the double value to the range 1 to max
+	// change [0, 1] range to [1, max], with equal ranges for each
+	return std::clamp(static_cast<int>(value * max) + 1, 0, max);
+}
 
 int32_t Env_Putter::Step() {
 	// input from gym is 1-based
-	int x1 = shared_data.x1, x2 = shared_data.x2, y1 = shared_data.y1, y2 = shared_data.y2, type = shared_data.type;
+	int x1,x2,y1,y2;
+	#ifdef RECEIVES_POSITIONS_IN_FLOAT
+		x1 = mapFloatToInt(shared_data.x1, MAX_X);
+		x2 = mapFloatToInt(shared_data.x2, MAX_X);
+		y1 = mapFloatToInt(shared_data.y1, MAX_Y);
+		y2 = mapFloatToInt(shared_data.y2, MAX_Y);
+	#else
+		x1 = shared_data.x1;
+		x2 = shared_data.x2;
+		y1 = shared_data.y1;
+		y2 = shared_data.y2;
+	#endif // RECEIVES_POSITIONS_IN_FLOAT
+
+	int type = shared_data.type;
 	if (x2 < x1) std::swap(x1, x2);
 	if (y2 < y1) std::swap(y1, y2); // TODO: maybe better to get rid of these two lines for swapping
 

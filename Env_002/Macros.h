@@ -18,3 +18,7 @@
 	#define WEIGHTS {1.0,5,40,2.0,-1}
 	#define ADJACENCY_MATRIX_GOAL {{0, 1, -1}, {1, 0, 1}, { -1, 1, 0}};
 #endif
+
+#define RECEIVES_POSITIONS_IN_FLOAT
+
+//#undef RECEIVES_POSITIONS_IN_FLOAT

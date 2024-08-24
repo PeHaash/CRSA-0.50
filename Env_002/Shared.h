@@ -7,7 +7,12 @@ struct Shared {
 	int Grid_id;
 	int* InputGrid;
 	// Action:
-	int x1, x2, y1, y2, type;
+#ifdef RECEIVES_POSITIONS_IN_FLOAT
+	float x1, x2, y1, y2;
+#else
+	int x1, x2, y1, y2;
+#endif
+	int type;
 	// Observations:
 	int* SubspaceGrid;
 	int* RoomGrid;
@@ -32,7 +37,8 @@ struct Shared {
 		ObjectivesCount(obj_count){
 		
 		Grid_id = 0;
-		x1 = y1 = x2 = y2 = type = 0;
+		x1 = y1 = x2 = y2 = 0;
+		type = 0;
 		Terminated = Truncated = false;
 		Score = 0;
 	}
