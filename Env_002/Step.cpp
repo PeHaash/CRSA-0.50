@@ -16,10 +16,10 @@ int32_t Env_Putter::Step() {
 	// input from gym is 1-based
 	int x1,x2,y1,y2;
 	#ifdef RECEIVES_POSITIONS_IN_FLOAT
-		x1 = mapFloatToInt(shared_data.x1, MAX_X);
-		x2 = mapFloatToInt(shared_data.x2, MAX_X);
-		y1 = mapFloatToInt(shared_data.y1, MAX_Y);
-		y2 = mapFloatToInt(shared_data.y2, MAX_Y);
+		x1 = mapFloatToInt(shared_data.x1 / 2 + 0.5, MAX_X); // receive normalized actions, from -1 to 1
+		x2 = mapFloatToInt(shared_data.x2 / 2 + 0.5, MAX_X);
+		y1 = mapFloatToInt(shared_data.y1 / 2 + 0.5, MAX_Y);
+		y2 = mapFloatToInt(shared_data.y2 / 2 + 0.5, MAX_Y);
 	#else
 		x1 = shared_data.x1;
 		x2 = shared_data.x2;
