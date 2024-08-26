@@ -1,7 +1,7 @@
-#include "Env_Putter.h"
+#include "Env_Room_Putter.h"
 #include "InputGridArrays.h"
 
-int32_t Env_Putter::Reset() {
+int32_t Env_Room_Putter::Reset() {
 	// >> to avoid memory leak, we do not have any constructors of structs/classes here. they can cause problems
 
 	// For things that are per room:

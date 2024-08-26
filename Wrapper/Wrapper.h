@@ -13,7 +13,11 @@
 #endif
 
 #ifdef CUST_ENV_IS_PANTER
-#include "ENV_Painter.h"
+	#include "ENV_Painter.h"
+#endif
+
+#ifdef CUST_ENV_IS_PUTTER_V2
+	#include "Env_Room_Putter.h"
 #endif
 
 

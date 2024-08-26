@@ -1,4 +1,4 @@
-#include "Env_Putter.h"
+#include "Env_Room_Putter.h"
 
 
 #define E_LOW(x)  (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + 1)
@@ -12,7 +12,7 @@ inline int mapFloatToInt(float value, int max) {
 	return std::clamp(static_cast<int>(value * max) + 1, 0, max);
 }
 
-int32_t Env_Putter::Step() {
+int32_t Env_Room_Putter::Step() {
 	// input from gym is 1-based
 	int x1,x2,y1,y2;
 	#ifdef RECEIVES_POSITIONS_IN_FLOAT
@@ -68,14 +68,14 @@ int32_t Env_Putter::Step() {
 
 
 
-void Env_Putter::AddWindow(int x1, int y1, int x2, int y2)
+void Env_Room_Putter::AddWindow(int x1, int y1, int x2, int y2)
 {
 	// TODO: Add Window
 }
 
 
 
-void Env_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture_id)
+void Env_Room_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture_id)
 {
 	// TODO: AddFurniture
 	// check if we put this before
