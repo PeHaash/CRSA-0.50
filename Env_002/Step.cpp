@@ -88,7 +88,11 @@ void Env_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture_id)
 	// check if the furniture is out of rooms, is on the wall, or other furnitures
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
-			if (RoomGrid[i][j] == EMPTY || WallGrid[i][j] != NO_WALL || FurnitureGrid[i][j] != EMPTY) {
+			if (RoomGrid[i][j] == EMPTY ||
+#ifndef NO_WALLS
+				WallGrid[i][j] != NO_WALL ||
+#endif // !NO_WALLS
+			FurnitureGrid[i][j] != EMPTY) {
 				Penalized = true;
 				return;
 			}

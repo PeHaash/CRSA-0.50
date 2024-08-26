@@ -3,10 +3,10 @@
 
 #include "Env_Putter.h"
 
-Env_Putter::Env_Putter()
-	:Weights(WeightsInArray) {
+Env_Putter::Env_Putter():
+	Weights(WeightsInArray),
+	RoomsConnections(DisjointSet(ROOM_COUNT)) {
 
-	RoomsConnections = DisjointSet(ROOM_COUNT);
 	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
 	
 	Scores = Objectives(0.0);
@@ -14,16 +14,27 @@ Env_Putter::Env_Putter()
 	for (int i = 0; i < ROOM_COUNT; i++) {
 		SubspaceConnections[i] = DisjointSet(MAX_SS_PER_ROOM);
 	}
-
-	
-	
-
 	
 	// should make the Shared!!
-	//shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount);
-	shared_data = Shared(static_cast<void*>(this), &InputGrid[0][0], &SubspaceGrid[0][0], &RoomGrid[0][0], &FurnitureGrid[0][0], &WallGrid[0][0],
-		&CirculationGrid[0][0], &RoomAreaCount[0], &UsedSpaceCount, &NumberOfSubspacesMade[0], &RoomConnectedToCirculation[0],
-		reinterpret_cast<double*> (&Scores), OBJ_COUNT);
+
+	shared_data = Shared(
+		static_cast<void*>(this), 
+		&InputGrid[0][0], 
+		&SubspaceGrid[0][0], 
+		&RoomGrid[0][0], 
+		&FurnitureGrid[0][0],
+#ifndef NO_WALLS
+		& WallGrid[0][0],
+#else
+		& RoomGrid[0][0], // just a measure, be careful
+#endif // !NO_WALLS
+		&CirculationGrid[0][0], 
+		&RoomAreaCount[0], 
+		&UsedSpaceCount, 
+		&NumberOfSubspacesMade[0], 
+		&RoomConnectedToCirculation[0],
+		reinterpret_cast<double*> (&Scores), 
+		OBJ_COUNT);
 }
 
 

@@ -3,12 +3,15 @@
 
 void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 {
+
+#ifndef NO_WALLS
 	// check if the space is thin
 	if (x2 - x1 <= 1 || y2 - y1 <= 1) {
 		// too thin, can cause problem with the walls
 		Penalized = true;
 		return;
 	}
+#endif // !NO_WALLS
 
 	// check if we put this before
 	if (Subspaces[subspace_id].x1 != -1) {
@@ -59,7 +62,7 @@ void Env_Putter::AddSubspace(int x1, int y1, int x2, int y2, int subspace_id)
 
 
 
-
+#ifndef NO_WALLS
 void Env_Putter::UpdateWallsOfSubspace(int subspace_id) {
 	Subspace ss = Subspaces[subspace_id];
 	int room_id = subspace_id / MAX_SS_PER_ROOM;
@@ -108,4 +111,9 @@ void Env_Putter::UpdateWallsOfSubspace(int subspace_id) {
 			RoomGrid[ss.x2][ss.y2 + 1] != room_id || RoomGrid[ss.x2 - 1][ss.y2 + 1] != room_id);
 	WallGrid[ss.x2][ss.y2] = bottom_right_corner_has_different_room_neighbour ? IS_WALL : NO_WALL;
 }
+
+
+#else
+void Env_Putter::UpdateWallsOfSubspace(int subspace_id){}
+#endif // !NO_WALLS
 

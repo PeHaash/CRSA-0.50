@@ -20,5 +20,5 @@
 #endif
 
 #define RECEIVES_POSITIONS_IN_FLOAT
-
+#define NO_WALLS
 //#undef RECEIVES_POSITIONS_IN_FLOAT

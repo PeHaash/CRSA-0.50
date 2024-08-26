@@ -54,7 +54,9 @@ private:
 	int SubspaceGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
 	int FurnitureGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
 	int RoomGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty
+#ifndef  NO_WALLS
 	int WallGrid[MAX_X + 2][MAX_Y + 2]; // 0: no wall, 1: wall, 2: window
+#endif // ! NO_WALLS
 	int CirculationGrid[MAX_X + 2][MAX_Y + 2]; // 0: no circulation, 1: circulation
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
 	bool RoomConnectedToCirculation[ROOM_COUNT];
