@@ -9,7 +9,7 @@
 	#define MAX_X 32
 	#define MAX_Y 32
 	#define GOAL_AREAS { 0.3,0.4,0.3 }
-	#define PENALIZED_CONSTANT -5
+	#define PENALIZED_CONSTANT -0.1
 	#define ALPHA 1
 	#define BETA 0.2
 	#define MAX_STEPS 50 // TODO: Make max-steps + termination better
