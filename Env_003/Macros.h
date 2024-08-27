@@ -19,6 +19,6 @@
 	#define ADJACENCY_MATRIX_GOAL {{0, 1, -1}, {1, 0, 1}, { -1, 1, 0}};
 #endif
 
-#define RECEIVES_POSITIONS_IN_FLOAT
-#define NO_WALLS
-//#undef RECEIVES_POSITIONS_IN_FLOAT
+
+
+

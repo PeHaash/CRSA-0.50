@@ -15,17 +15,11 @@ inline int mapFloatToInt(float value, int max) {
 int32_t Env_Room_Putter::Step() {
 	// input from gym is 1-based
 	int x1,x2,y1,y2;
-	#ifdef RECEIVES_POSITIONS_IN_FLOAT
-		x1 = mapFloatToInt(shared_data.x1 / 2 + (float)0.5, MAX_X); // receive normalized actions, from -1 to 1
-		x2 = mapFloatToInt(shared_data.x2 / 2 + (float)0.5, MAX_X);
-		y1 = mapFloatToInt(shared_data.y1 / 2 + (float)0.5, MAX_Y);
-		y2 = mapFloatToInt(shared_data.y2 / 2 + (float)0.5, MAX_Y);
-	#else
-		x1 = shared_data.x1;
-		x2 = shared_data.x2;
-		y1 = shared_data.y1;
-		y2 = shared_data.y2;
-	#endif // RECEIVES_POSITIONS_IN_FLOAT
+
+	x1 = mapFloatToInt(shared_data.x1 / 2 + (float)0.5, MAX_X); // receive normalized actions, from -1 to 1
+	x2 = mapFloatToInt(shared_data.x2 / 2 + (float)0.5, MAX_X);
+	y1 = mapFloatToInt(shared_data.y1 / 2 + (float)0.5, MAX_Y);
+	y2 = mapFloatToInt(shared_data.y2 / 2 + (float)0.5, MAX_Y);
 
 	int type = shared_data.type;
 	if (x2 < x1) std::swap(x1, x2);
@@ -88,11 +82,8 @@ void Env_Room_Putter::AddFurniture(int x1, int y1, int x2, int y2, int furniture
 	// check if the furniture is out of rooms, is on the wall, or other furnitures
 	for (int i = x1; i <= x2; i++) {
 		for (int j = y1; j <= y2; j++) {
-			if (RoomGrid[i][j] == EMPTY ||
-#ifndef NO_WALLS
-				WallGrid[i][j] != NO_WALL ||
-#endif // !NO_WALLS
-			FurnitureGrid[i][j] != EMPTY) {
+			// !NO_WALLS
+			if (RoomGrid[i][j] == EMPTY || FurnitureGrid[i][j] != EMPTY) {
 				Penalized = true;
 				return;
 			}

@@ -4,8 +4,8 @@
 #include "Env_Room_Putter.h"
 
 Env_Room_Putter::Env_Room_Putter():
-	Weights(WeightsInArray),
-	RoomsConnections(DisjointSet(ROOM_COUNT)) {
+	RoomsConnections(DisjointSet(ROOM_COUNT)),
+	Weights(WeightsInArray) {
 
 	CirculationConnections = DisjointSet2D(MAX_X + 1, MAX_Y + 1);
 	
@@ -16,25 +16,8 @@ Env_Room_Putter::Env_Room_Putter():
 	}
 	
 	// should make the Shared!!
+	shared_data = Shared(*this, OBJ_COUNT);
 
-	shared_data = Shared(
-		static_cast<void*>(this), 
-		&InputGrid[0][0], 
-		&SubspaceGrid[0][0], 
-		&RoomGrid[0][0], 
-		&FurnitureGrid[0][0],
-#ifndef NO_WALLS
-		& WallGrid[0][0],
-#else
-		& RoomGrid[0][0], // just a measure, be careful
-#endif // !NO_WALLS
-		&CirculationGrid[0][0], 
-		&RoomAreaCount[0], 
-		&UsedSpaceCount, 
-		&NumberOfSubspacesMade[0], 
-		&RoomConnectedToCirculation[0],
-		reinterpret_cast<double*> (&Scores), 
-		OBJ_COUNT);
 }
 
 

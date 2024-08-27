@@ -33,9 +33,7 @@ int32_t Env_Room_Putter::Reset() {
 	for (int i = 0; i <= MAX_X + 1; i++) {
 		for (int j = 0; j <= MAX_Y + 1; j++) {
 			FurnitureGrid[i][j] = EMPTY;
-#ifndef NO_WALLS
-			WallGrid[i][j] = NO_WALL;
-#endif // !NO_WALLS
+			// NO_WALLS
 			RoomGrid[i][j] = EMPTY;
 			CirculationGrid[i][j] = NO_CIRCULATION;
 		}
