@@ -4,24 +4,29 @@
 #define E_LOW(x)  (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + 1)
 #define E_HIGH(x) (((x-1)/ CIRCULATION_GRID_SIZE) * CIRCULATION_GRID_SIZE + CIRCULATION_GRID_SIZE)
 
-#define kk
 
-inline int mapFloatToInt(float value, int max) {
+
+static inline int mapFloatToInt(float value, int max) {
 	// Map the double value to the range 1 to max
 	// change [0, 1] range to [1, max], with equal ranges for each
 	return std::clamp(static_cast<int>(value * max) + 1, 0, max);
 }
 
+static inline int mapNormalDirstributionToDiscreteInts(float value, int max) {
+	/// map the input from sb3 to a range of numbers
+	return mapFloatToInt(value / 2 + (float)0.5, max);
+}
+
 int32_t Env_Room_Putter::Step() {
 	// input from gym is 1-based
 	int x1,x2,y1,y2;
-
-	x1 = mapFloatToInt(shared_data.x1 / 2 + (float)0.5, MAX_X); // receive normalized actions, from -1 to 1
-	x2 = mapFloatToInt(shared_data.x2 / 2 + (float)0.5, MAX_X);
-	y1 = mapFloatToInt(shared_data.y1 / 2 + (float)0.5, MAX_Y);
-	y2 = mapFloatToInt(shared_data.y2 / 2 + (float)0.5, MAX_Y);
+	x1 = mapNormalDirstributionToDiscreteInts(shared_data.x1, MAX_X); // receive normalized actions, from -1 to 1
+	x2 = mapNormalDirstributionToDiscreteInts(shared_data.x2, MAX_X);
+	y1 = mapNormalDirstributionToDiscreteInts(shared_data.y1, MAX_X);
+	y2 = mapNormalDirstributionToDiscreteInts(shared_data.y2, MAX_X);
 
 	int type = shared_data.type;
+
 	if (x2 < x1) std::swap(x1, x2);
 	if (y2 < y1) std::swap(y1, y2); // TODO: maybe better to get rid of these two lines for swapping
 
@@ -36,11 +41,11 @@ int32_t Env_Room_Putter::Step() {
 	//else if (type == 3) {
 	//	AddEntrance(x1, y1, x2, y2);
 	//}
-	else if (type < 2 + MAX_SUBSPACE) {
+	else if (type < 2 + ROOM_COUNT) {
 		AddSubspace(x1, y1, x2, y2, type - 2);
 	}
 	else {
-		AddFurniture(x1, y1, x2, y2, type - (2 + MAX_SUBSPACE));
+		AddFurniture(x1, y1, x2, y2, type - (2 + ROOM_COUNT));
 	}
 	if (Penalized == false) {
 		UpdateScores();

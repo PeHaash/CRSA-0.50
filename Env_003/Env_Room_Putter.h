@@ -94,11 +94,11 @@ private:
 	void AddCirculation(int x1, int y1, int x2, int y2);
 	void AddWindow(int x1, int y1, int x2, int y2);
 	//void AddEntrance(int x1, int y1, int x2, int y2);
-	void AddSubspace(int x1, int y1, int x2, int y2, int subspace_id);
+	void AddSubspace(int x1, int y1, int x2, int y2, int room_id);
 	void AddFurniture(int x1, int y1, int x2, int y2, int furniture_id);
 private:
 	// helper functions for step
-	void UpdateWallsOfSubspace(int subspace_id);
+	//void UpdateWallsOfSubspace(int subspace_id);
 	void UpdateAdjacencyMatrix(int x1, int y1, int x2, int y2);
 
 public:

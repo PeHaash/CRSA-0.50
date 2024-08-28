@@ -44,19 +44,24 @@ bool Env_Room_Putter::CheckAvailableSpaceUsed() {
 }
 
 bool Env_Room_Putter::CheckRoomsCorrectArea() {
+	double scores_sum = 0.0;
 	for (int i = 0; i < ROOM_COUNT; i++) {
-		// best number is (UsedSpaceCount * RoomAreaGoal[i])
-		Scores.RoomsHaveDesiredArea[i] =
-			Objectives::MappedScore(0, UsedSpaceCount * RoomAreaGoal[i], AllAvailableSpace, RoomAreaCount[i]) * ALPHA + BETA;
+		// old version: 
+		// scores_sum += Objectives::MappedScore(0, UsedSpaceCount * RoomAreaGoal[i], AllAvailableSpace, RoomAreaCount[i]) * ALPHA + BETA;
+		// gives good scores on really crappy plans
+		scores_sum += Objectives::MappedScore(0, AllAvailableSpace * RoomAreaGoal[i], AllAvailableSpace, RoomAreaCount[i]) * ALPHA + BETA;
 	}
+	Scores.RoomsHaveDesiredArea = scores_sum / (double)ROOM_COUNT;
 	return true;
 }
 
 bool Env_Room_Putter::CheckRoomsInternalConnectedness() {
+	double scores_sum = 0.0;
 	for (int i = 0; i < ROOM_COUNT; i++) {
-		Scores.RoomsInternalConnectedness[i] =
+		scores_sum += 
 			(RoomAreaCount[i] == 0) ? 0 : (((double)SubspaceConnections[i].BiggestSetSize() / (double)NumberOfSubspacesMade[i]) * ALPHA + BETA);
 	}
+	Scores.RoomsInternalConnectedness = scores_sum / (double)ROOM_COUNT;
 	return true;
 }
 

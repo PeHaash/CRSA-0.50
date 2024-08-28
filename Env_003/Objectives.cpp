@@ -56,10 +56,10 @@ double Objectives::Average(Objectives s, Objectives w) {
 void Objectives::Print() const
 {
 	std::cout << "\n Rooms: ";
-	for (int i = 0; i < ROOM_COUNT; i++) std::cout << RoomsHaveDesiredArea[i] << ", ";
+	std::cout << RoomsHaveDesiredArea << ", ";
 	std::cout << "\n Available spaces:" << AllAvailableSpacesAreUsed << '\n';
 	std::cout << " Rooms Connectedness:";
-	for (int i = 0; i < ROOM_COUNT; i++) std::cout << RoomsInternalConnectedness[i] << ", ";
+	std::cout << RoomsInternalConnectedness << ", ";
 	std::cout << "\n";
 }
 

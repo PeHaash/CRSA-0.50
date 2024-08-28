@@ -8,9 +8,9 @@ struct Objectives {
 
 	//double WeHaveRoom[ROOM_COUNT]; // 0 or 1
 	double AllAvailableSpacesAreUsed = 0; // 0 to 1
-	double RoomsHaveDesiredArea[ROOM_COUNT] = { 0 };
+	double RoomsHaveDesiredArea =  0 ;
 
-	double RoomsInternalConnectedness[ROOM_COUNT] = { 0 }; // 0 to 1
+	double RoomsInternalConnectedness = 0 ; // 0 to 1
 
 	double AllCirculationsAreConnected = 0;
 	double CirculationAccessToOutside = 0;
