@@ -13,7 +13,7 @@ DisjointSet::DisjointSet(int n):NumberOfElements (n){
 
 void DisjointSet::Reset() {
 	std::fill(Par.begin(), Par.end(), -1);
-	std::fill(Size.begin(), Size.end(), -1);
+	std::fill(Size.begin(), Size.end(), 1);
 	BiggestSetCount = 1;
 	NumberOfSets = NumberOfElements;
 }

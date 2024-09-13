@@ -55,13 +55,21 @@ double Objectives::Average(Objectives s, Objectives w) {
 }
 void Objectives::Print() const
 {
-	std::cout << "\n Rooms: ";
-	std::cout << RoomsHaveDesiredArea << ", ";
-	std::cout << "\n Available spaces:" << AllAvailableSpacesAreUsed << '\n';
-	std::cout << " Rooms Connectedness:";
-	std::cout << RoomsInternalConnectedness << ", ";
-	std::cout << "\n";
+
+	std::cout << "AllAvailableSpacesAreUsed: "<< AllAvailableSpacesAreUsed <<'\n';
+	std::cout << "RoomsHaveDesiredArea: "<< RoomsHaveDesiredArea <<'\n';
+	std::cout << "RoomsInternalConnectedness: " << RoomsInternalConnectedness << '\n';
+	std::cout << "AllCirculationsAreConnected: " << AllCirculationsAreConnected << '\n';
+	std::cout << "CirculationAccessToOutside: " << CirculationAccessToOutside << '\n';
+	std::cout << "AllRoomsConnectedTogether: " << AllRoomsConnectedTogether << '\n';
+	std::cout << "CorrectAdjacencyMatrix: " << CorrectAdjacencyMatrix << '\n';
+
+
 }
+
+
+
+
 
 double Objectives::MappedScore(double min_num, double goal_num, double max_num, double status) {
 	double ans1 = (goal_num != min_num) ? (status - goal_num) / (goal_num - min_num) : 2;

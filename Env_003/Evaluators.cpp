@@ -56,15 +56,15 @@ bool Env_Room_Putter::CheckRoomsCorrectArea() {
 }
 
 bool Env_Room_Putter::CheckRoomsInternalConnectedness() {
-	double scores_sum = 0.0;
+	double scores_sum = 0.0, rooms_added = 0.0;
 	for (int i = 0; i < ROOM_COUNT; i++) {
 		scores_sum += 
 			(RoomAreaCount[i] == 0) ? 0 : (((double)SubspaceConnections[i].BiggestSetSize() / (double)NumberOfSubspacesMade[i]) * ALPHA + BETA);
+		rooms_added += (RoomAreaCount[i] == 0) ? 0 : 1;
 	}
-	Scores.RoomsInternalConnectedness = scores_sum / (double)ROOM_COUNT;
+	Scores.RoomsInternalConnectedness = (rooms_added==0)? 0 : scores_sum / rooms_added;
 	return true;
 }
-
 
 bool Env_Room_Putter::CheckCirculationsConnectivity(){
 	if(NumberOfGridsUsedInCirulation != 0)

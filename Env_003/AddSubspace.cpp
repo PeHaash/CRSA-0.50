@@ -1,3 +1,4 @@
+
 #include "Env_Room_Putter.h"
 
 // new version, room_id / no walls
@@ -43,6 +44,7 @@ void Env_Room_Putter::AddSubspace(int x1, int y1, int x2, int y2, int room_id)
 			// connected subspace!
 
 			SubspaceConnections[room_id].Join(i - room_first_ss_id, subspace_id - room_first_ss_id);
+
 		}
 
 	}

@@ -37,9 +37,23 @@ int32_t Env_Room_Putter::Render()
 		std::cout << '\n';
 	}
 
+	std::cout << '\n';
+	for (int j = 1; j <= MAX_Y; j++) {
+		for (int i = 1; i <= MAX_X; i++) {
+			if (CirculationGrid[i][j] == NO_CIRCULATION) {
+				std::cout << std::setw(2) << "X";
+			}
+			else {
+				std::cout << std::setw(2) << ".";
+			}
+			//std::cout <<(Grid[i][j]==-1? "-": (const char*)(Grid[i][j])) << "";
+		}
+		std::cout << '\n';
+	}
+
 	Scores.Print();
 	std::cout << '\n';
-	Weights.Print();
+	//Weights.Print();
 	return 0;
 }
 
