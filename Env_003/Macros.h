@@ -19,19 +19,19 @@
 	#define ADJACENCY_MATRIX_GOAL {{0, 1, -1}, {1, 0, 1}, { -1, 1, 0}};
 #endif
 */
-
-#define ROOM_COUNT 2
-#define MAX_SS_PER_ROOM 2
-#define FURNITURE_COUNT 1
-#define MAX_X 8
-#define MAX_Y 8
-#define GOAL_AREAS { 0.6, 0.4 }
-#define PENALIZED_CONSTANT 0
-#define ALPHA 0.9
-#define BETA 0.1
-#define MAX_STEPS 15
-#define RESET_GRIDS_COUNT 20
-#define CIRCULATION_GRID_SIZE 2
-#define WEIGHTS {1, 3, 0.5, 1, 1, 1, 1}
-#define ADJACENCY_MATRIX_GOAL {{0, 1}, {1, 0}};
-
+	#ifdef _MSC_VER
+	#define ROOM_COUNT 2
+	#define MAX_SS_PER_ROOM 2
+	#define FURNITURE_COUNT 1
+	#define MAX_X 8
+	#define MAX_Y 8
+	#define GOAL_AREAS { 0.6, 0.4 }
+	#define PENALIZED_CONSTANT 0
+	#define ALPHA 0.9
+	#define BETA 0.1
+	#define MAX_STEPS 15
+	#define RESET_GRIDS_COUNT 20
+	#define CIRCULATION_GRID_SIZE 2
+	#define WEIGHTS {1, 3, 0.5, 1, 1, 1, 1}
+	#define ADJACENCY_MATRIX_GOAL {{0, 1}, {1, 0}};
+#endif
