@@ -13,8 +13,8 @@ int32_t Env_Room_Putter::Reset() {
 	}
 
 	// Adjacency Matrix
-	for (int i = 0; i < ROOM_COUNT; i++) {
-		for (int j = 0; j < ROOM_COUNT; j++) {
+	for (int i = 0; i < ROOM_COUNT + 1; i++) {
+		for (int j = 0; j < ROOM_COUNT + 1; j++) {
 			AdjacencyMatrix[i][j] = 0;
 		}
 	}
@@ -34,7 +34,7 @@ int32_t Env_Room_Putter::Reset() {
 		for (int j = 0; j <= MAX_Y + 1; j++) {
 			FurnitureGrid[i][j] = EMPTY;
 			// NO_WALLS
-			RoomGrid[i][j] = EMPTY;
+			RoomGrid[i][j] = (InputGrid[i][j] == ACCESS)? ENTRANCE_GRID :  EMPTY;
 			CirculationGrid[i][j] = NO_CIRCULATION;
 		}
 	}

@@ -33,5 +33,5 @@
 	#define RESET_GRIDS_COUNT 20
 	#define CIRCULATION_GRID_SIZE 2
 	#define WEIGHTS {1, 3, 0.5, 1, 1, 1, 1}
-	#define ADJACENCY_MATRIX_GOAL {{0, 1}, {1, 0}};
+	#define ADJACENCY_MATRIX_GOAL {{0, 1, 0}, {1, 0, 0}, {0,0,0}};
 #endif

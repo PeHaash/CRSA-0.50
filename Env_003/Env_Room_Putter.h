@@ -13,7 +13,7 @@ constexpr int NO_WALL = 0;
 constexpr int IS_WALL = 1;
 constexpr int IS_WINDOW = 2;
 
-// grids
+// input grids
 constexpr int FREE = 0;
 constexpr int BLOCKED = -1;
 constexpr int ACCESS = 1;
@@ -24,6 +24,7 @@ constexpr int NO_CIRCULATION = 0, IS_CIRCULATION = 1;
 
 constexpr int MAX_SUBSPACE = ROOM_COUNT * MAX_SS_PER_ROOM;
 
+constexpr int ENTRANCE_GRID = ROOM_COUNT; // representation of entrance in the RoomGrid
 
 static_assert(MAX_X % CIRCULATION_GRID_SIZE == 0 && MAX_Y % CIRCULATION_GRID_SIZE == 0, "NOT ok size for the CIRCULATION_GRID_SIZE");
 
@@ -47,16 +48,16 @@ class Env_Room_Putter {
 public:
 	Shared shared_data; // data shared between the front & back
 private:
-	const int AdjacencyMatrixGoal[ROOM_COUNT][ROOM_COUNT] = ADJACENCY_MATRIX_GOAL;
-	int AdjacencyMatrix[ROOM_COUNT][ROOM_COUNT];
+	const int AdjacencyMatrixGoal[ROOM_COUNT + 1][ROOM_COUNT + 1] = ADJACENCY_MATRIX_GOAL;
+	int AdjacencyMatrix[ROOM_COUNT + 1][ROOM_COUNT + 1];
 	int RoomAreaCount[ROOM_COUNT] = { 0 };
 	const double RoomAreaGoal[ROOM_COUNT] = GOAL_AREAS;
 	int InputGrid[MAX_X + 2][MAX_Y + 2] = { 0 }; // 0: Free, -1: Blocked, 1: Acsess, 2: Outside
 	int SubspaceGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
 	int FurnitureGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty, -2: unavailable
-	int RoomGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty
+	int RoomGrid[MAX_X + 2][MAX_Y + 2] = { -1 }; // -1: empty , 0 ... ROOM_COOUNT-1: rooms, ROOM_COUNT: entrance
 	// NO_WALLS
-	int CirculationGrid[MAX_X + 2][MAX_Y + 2]; // 0: no circulation, 1: circulation
+	int CirculationGrid[MAX_X + 2][MAX_Y + 2]; // 0: no circulation, 1: circulation 
 	int NumberOfSubspacesMade[ROOM_COUNT] = { 0 };
 	bool RoomConnectedToCirculation[ROOM_COUNT];
 	DisjointSet RoomsConnections; // = {ROOM_COUNT};
